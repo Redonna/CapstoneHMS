@@ -11,17 +11,20 @@ namespace HospitalManagementSystem.API.Services
         private readonly IAppointmentRepository _appointmentRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
         public AppointmentService(
             IAppointmentRepository appointmentRepository,
             IPatientRepository patientRepository,
             IDoctorRepository doctorRepository,
+            IUserRepository userRepository,
             IMapper mapper)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
             _doctorRepository = doctorRepository;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
@@ -49,7 +52,7 @@ namespace HospitalManagementSystem.API.Services
             return _mapper.Map<IEnumerable<AppointmentReadDto>>(appointments);
         }
 
-        public async Task<(AppointmentReadDto? result, string? error)> CreateAsync(AppointmentCreateDto dto)
+        public async Task<(AppointmentReadDto? result, string? error)> CreateAsync(AppointmentCreateDto dto, string creatorRole)
         {
             // Business rule: appointment must be in the future
             if (dto.AppointmentDate <= DateTime.UtcNow)
@@ -67,12 +70,16 @@ namespace HospitalManagementSystem.API.Services
             var doctorAppointments = await _appointmentRepository.GetByDoctorIdAsync(dto.DoctorId);
             bool conflict = doctorAppointments.Any(a =>
                 a.Status != AppointmentStatus.Cancelled &&
+                a.Status != AppointmentStatus.Denied &&
                 Math.Abs((a.AppointmentDate - dto.AppointmentDate).TotalMinutes) < 30);
 
             if (conflict)
                 return (null, "The doctor already has an appointment within 30 minutes of the requested time.");
 
             var appointment = _mapper.Map<Appointment>(dto);
+            // Admin-assigned appointments need the doctor's confirmation; a doctor booking
+            // their own appointment is confirmed immediately.
+            appointment.Status = creatorRole == "Admin" ? AppointmentStatus.Pending : AppointmentStatus.Scheduled;
             var created = await _appointmentRepository.CreateAsync(appointment);
 
             // Reload with navigation properties for mapping
@@ -112,6 +119,44 @@ namespace HospitalManagementSystem.API.Services
             appointment.Status = AppointmentStatus.Cancelled;
             await _appointmentRepository.UpdateAsync(id, appointment);
             return true;
+        }
+
+        public async Task<(AppointmentReadDto? result, string? error)> AcceptAsync(int id, string callerUsername)
+        {
+            var appointment = await _appointmentRepository.GetByIdAsync(id);
+            if (appointment == null) return (null, "Appointment not found.");
+
+            if (appointment.Status != AppointmentStatus.Pending)
+                return (null, "Only pending appointments can be accepted.");
+
+            var owns = await IsOwnedByCallerAsync(appointment.DoctorId, callerUsername);
+            if (!owns) return (null, "You can only accept appointments assigned to you.");
+
+            appointment.Status = AppointmentStatus.Scheduled;
+            var updated = await _appointmentRepository.UpdateAsync(id, appointment);
+            return (_mapper.Map<AppointmentReadDto>(updated), null);
+        }
+
+        public async Task<(AppointmentReadDto? result, string? error)> DenyAsync(int id, string callerUsername)
+        {
+            var appointment = await _appointmentRepository.GetByIdAsync(id);
+            if (appointment == null) return (null, "Appointment not found.");
+
+            if (appointment.Status != AppointmentStatus.Pending)
+                return (null, "Only pending appointments can be denied.");
+
+            var owns = await IsOwnedByCallerAsync(appointment.DoctorId, callerUsername);
+            if (!owns) return (null, "You can only deny appointments assigned to you.");
+
+            appointment.Status = AppointmentStatus.Denied;
+            var updated = await _appointmentRepository.UpdateAsync(id, appointment);
+            return (_mapper.Map<AppointmentReadDto>(updated), null);
+        }
+
+        private async Task<bool> IsOwnedByCallerAsync(int doctorId, string callerUsername)
+        {
+            var user = await _userRepository.GetByUsernameAsync(callerUsername);
+            return user?.ProfileId == doctorId;
         }
     }
 }

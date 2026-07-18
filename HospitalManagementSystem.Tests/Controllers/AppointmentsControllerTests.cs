@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using HospitalManagementSystem.API.Controllers;
 using HospitalManagementSystem.API.DTOs;
 using HospitalManagementSystem.API.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using Xunit;
@@ -12,10 +14,26 @@ namespace HospitalManagementSystem.Tests.Controllers
         private readonly IAppointmentService _service;
         private readonly AppointmentsController _controller;
 
+        private const string CallerUsername = "drsmith";
+
         public AppointmentsControllerTests()
         {
             _service = Substitute.For<IAppointmentService>();
             _controller = new AppointmentsController(_service);
+            SetCaller("Admin", CallerUsername);
+        }
+
+        private void SetCaller(string role, string username)
+        {
+            var identity = new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.Name, username)
+            }, "TestAuth");
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal(identity) }
+            };
         }
 
         private AppointmentReadDto MakeDto(int id = 1) => new()
@@ -103,7 +121,7 @@ namespace HospitalManagementSystem.Tests.Controllers
                 AppointmentDate = DateTime.UtcNow.AddDays(7),
                 Reason = "Routine checkup"
             };
-            _service.CreateAsync(dto).Returns((MakeDto(1), (string?)null));
+            _service.CreateAsync(dto, "Admin").Returns((MakeDto(1), (string?)null));
 
             // Act
             var result = await _controller.Create(dto);
@@ -124,7 +142,7 @@ namespace HospitalManagementSystem.Tests.Controllers
                 AppointmentDate = DateTime.UtcNow.AddDays(-1),
                 Reason = "Past date"
             };
-            _service.CreateAsync(dto).Returns(((AppointmentReadDto?)null, "Appointment date must be in the future."));
+            _service.CreateAsync(dto, "Admin").Returns(((AppointmentReadDto?)null, "Appointment date must be in the future."));
 
             // Act
             var result = await _controller.Create(dto);
@@ -159,6 +177,68 @@ namespace HospitalManagementSystem.Tests.Controllers
 
             // Assert
             Assert.IsType<NotFoundObjectResult>(result);
+        }
+
+        // ── PATCH /api/appointments/{id}/accept ───────────────────────────────
+
+        [Fact]
+        public async Task Accept_Returns200_WhenPending()
+        {
+            // Arrange
+            var dto = MakeDto(1);
+            dto.Status = "Scheduled";
+            _service.AcceptAsync(1, CallerUsername).Returns((dto, (string?)null));
+
+            // Act
+            var result = await _controller.Accept(1);
+
+            // Assert
+            var ok = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(dto, ok.Value);
+        }
+
+        [Fact]
+        public async Task Accept_Returns400_WhenNotPending()
+        {
+            // Arrange
+            _service.AcceptAsync(1, CallerUsername).Returns(((AppointmentReadDto?)null, "Only pending appointments can be accepted."));
+
+            // Act
+            var result = await _controller.Accept(1);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        // ── PATCH /api/appointments/{id}/deny ─────────────────────────────────
+
+        [Fact]
+        public async Task Deny_Returns200_WhenPending()
+        {
+            // Arrange
+            var dto = MakeDto(1);
+            dto.Status = "Denied";
+            _service.DenyAsync(1, CallerUsername).Returns((dto, (string?)null));
+
+            // Act
+            var result = await _controller.Deny(1);
+
+            // Assert
+            var ok = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(dto, ok.Value);
+        }
+
+        [Fact]
+        public async Task Deny_Returns400_WhenNotPending()
+        {
+            // Arrange
+            _service.DenyAsync(1, CallerUsername).Returns(((AppointmentReadDto?)null, "Only pending appointments can be denied."));
+
+            // Act
+            var result = await _controller.Deny(1);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
         }
     }
 }

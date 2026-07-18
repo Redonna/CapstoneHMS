@@ -4,9 +4,11 @@ namespace HospitalManagementSystem.API.Models
 {
     public enum AppointmentStatus
     {
+        Pending,
         Scheduled,
         Completed,
-        Cancelled
+        Cancelled,
+        Denied
     }
 
     public class Appointment

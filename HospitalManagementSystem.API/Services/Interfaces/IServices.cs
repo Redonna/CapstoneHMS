@@ -26,9 +26,11 @@ namespace HospitalManagementSystem.API.Services.Interfaces
         Task<AppointmentReadDto?> GetByIdAsync(int id);
         Task<IEnumerable<AppointmentReadDto>> GetByPatientIdAsync(int patientId);
         Task<IEnumerable<AppointmentReadDto>> GetByDoctorIdAsync(int doctorId);
-        Task<(AppointmentReadDto? result, string? error)> CreateAsync(AppointmentCreateDto dto);
+        Task<(AppointmentReadDto? result, string? error)> CreateAsync(AppointmentCreateDto dto, string creatorRole);
         Task<(AppointmentReadDto? result, string? error)> UpdateAsync(int id, AppointmentUpdateDto dto);
         Task<bool> CancelAsync(int id);
+        Task<(AppointmentReadDto? result, string? error)> AcceptAsync(int id, string callerUsername);
+        Task<(AppointmentReadDto? result, string? error)> DenyAsync(int id, string callerUsername);
     }
 
     public interface IAuthService

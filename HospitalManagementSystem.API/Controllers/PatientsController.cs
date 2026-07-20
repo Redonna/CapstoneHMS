@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using HospitalManagementSystem.API.DTOs;
 using HospitalManagementSystem.API.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -11,10 +12,12 @@ namespace HospitalManagementSystem.API.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IPatientService _service;
+        private readonly IAssignmentService _assignmentService;
 
-        public PatientsController(IPatientService service)
+        public PatientsController(IPatientService service, IAssignmentService assignmentService)
         {
             _service = service;
+            _assignmentService = assignmentService;
         }
 
         /// <summary>Get the patient profile for the currently authenticated patient user</summary>
@@ -51,13 +54,20 @@ namespace HospitalManagementSystem.API.Controllers
             return patient == null ? NotFound($"Patient with ID {id} not found.") : Ok(patient);
         }
 
-        /// <summary>Register a new patient</summary>
+        /// <summary>Register a new patient. When created by a Doctor, the patient is automatically assigned and accepted for that doctor.</summary>
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Doctor")]
         public async Task<IActionResult> Create([FromBody] PatientCreateDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var created = await _service.CreateAsync(dto);
+
+            if (User.FindFirstValue(ClaimTypes.Role) == "Doctor")
+            {
+                var username = User.Identity?.Name ?? string.Empty;
+                await _assignmentService.CreateSelfAssignedAsync(created.Id, username);
+            }
+
             return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
         }
 

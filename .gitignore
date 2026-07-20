@@ -1,0 +1,6 @@
+bin/
+obj/
+.vs/
+.idea/
+publish/
+HospitalManagementSystem.API/Uploads/

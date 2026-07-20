@@ -38,4 +38,24 @@ namespace HospitalManagementSystem.API.Services.Interfaces
         Task<(AuthResponseDto? result, string? error)> LoginAsync(LoginDto dto);
         Task<(AuthResponseDto? result, string? error)> RegisterAsync(RegisterDto dto);
     }
+
+    public interface IAssignmentService
+    {
+        Task<IEnumerable<AssignmentReadDto>> GetAllAsync();
+        Task<IEnumerable<AssignmentReadDto>> GetByDoctorIdAsync(int doctorId);
+        Task<IEnumerable<AssignmentReadDto>> GetByPatientIdAsync(int patientId);
+        Task<(AssignmentReadDto? result, string? error)> CreateAsync(AssignmentCreateDto dto);
+        Task<(AssignmentReadDto? result, string? error)> CreateSelfAssignedAsync(int patientId, string callerUsername);
+        Task<(AssignmentReadDto? result, string? error)> AcceptAsync(int id, string callerUsername);
+        Task<(AssignmentReadDto? result, string? error)> DenyAsync(int id, string callerUsername);
+        Task<(bool success, string? error)> RemoveAsync(int id, string callerRole, string callerUsername);
+    }
+
+    public interface IPatientHistoryService
+    {
+        Task<IEnumerable<PatientHistoryReadDto>> GetByPatientIdAsync(int patientId);
+        Task<(PatientHistoryReadDto? result, string? error)> CreateAsync(PatientHistoryCreateDto dto, string creatorRole, string callerUsername);
+        Task<(PatientHistoryReadDto? result, string? error)> UploadAttachmentAsync(int entryId, IFormFile file);
+        Task<(string? absolutePath, string? fileName, string? error)> GetAttachmentAsync(int entryId);
+    }
 }

@@ -31,6 +31,24 @@ namespace HospitalManagementSystem.API.Mappings
                     opt => opt.MapFrom(src => src.Doctor.Specialization))
                 .ForMember(dest => dest.Status,
                     opt => opt.MapFrom(src => src.Status.ToString()));
+
+            // Doctor-Patient Assignment
+            CreateMap<AssignmentCreateDto, DoctorPatientAssignment>();
+            CreateMap<DoctorPatientAssignment, AssignmentReadDto>()
+                .ForMember(dest => dest.PatientName,
+                    opt => opt.MapFrom(src => src.Patient.FirstName + " " + src.Patient.LastName))
+                .ForMember(dest => dest.DoctorName,
+                    opt => opt.MapFrom(src => src.Doctor.FirstName + " " + src.Doctor.LastName))
+                .ForMember(dest => dest.Status,
+                    opt => opt.MapFrom(src => src.Status.ToString()));
+
+            // Patient History
+            CreateMap<PatientHistoryCreateDto, PatientHistoryEntry>();
+            CreateMap<PatientHistoryEntry, PatientHistoryReadDto>()
+                .ForMember(dest => dest.RecordedByDoctorName,
+                    opt => opt.MapFrom(src => src.RecordedByDoctor == null ? "Admin" : src.RecordedByDoctor.FirstName + " " + src.RecordedByDoctor.LastName))
+                .ForMember(dest => dest.HasAttachment,
+                    opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.AttachmentStoredPath)));
         }
     }
 }

@@ -100,6 +100,48 @@ namespace HospitalManagementSystem.API.DTOs
         public DateTime CreatedAt { get; set; }
     }
 
+    // ── DOCTOR-PATIENT ASSIGNMENT ───────────────────────────────
+    public class AssignmentCreateDto
+    {
+        [Required] public int PatientId { get; set; }
+        [Required] public int DoctorId { get; set; }
+    }
+
+    public class AssignmentReadDto
+    {
+        public int Id { get; set; }
+        public int PatientId { get; set; }
+        public string PatientName { get; set; } = string.Empty;
+        public int DoctorId { get; set; }
+        public string DoctorName { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public DateTime AssignedAt { get; set; }
+        public DateTime? DecidedAt { get; set; }
+    }
+
+    // ── PATIENT HISTORY ──────────────────────────────────────────
+    public class PatientHistoryCreateDto
+    {
+        [Required] public int PatientId { get; set; }
+        [Required, MaxLength(200)] public string Title { get; set; } = string.Empty;
+        [Required, MaxLength(2000)] public string Details { get; set; } = string.Empty;
+        public DateTime? RecordDate { get; set; }
+    }
+
+    public class PatientHistoryReadDto
+    {
+        public int Id { get; set; }
+        public int PatientId { get; set; }
+        public int? RecordedByDoctorId { get; set; }
+        public string RecordedByDoctorName { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Details { get; set; } = string.Empty;
+        public DateTime RecordDate { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public bool HasAttachment { get; set; }
+        public string? AttachmentFileName { get; set; }
+    }
+
     // ── AUTH ──────────────────────────────────────────────────
     public class RegisterDto
     {

@@ -65,6 +65,13 @@
     .badge-scheduled { background: #d1ecf1; color: #0c5460; }
     .badge-completed { background: #d4edda; color: #155724; }
     .badge-cancelled { background: #f8d7da; color: #721c24; }
+    .badge-pending { background: #fff3cd; color: #856404; }
+    .badge-denied { background: #f5c6cb; color: #58151c; }
+    .badge-accepted { background: #d4edda; color: #155724; }
+
+    .assigned-denied { color: #c0392b; font-weight: 600; }
+    .assigned-pending { color: #b8860b; font-weight: 600; }
+    .assigned-accepted { color: #1e7e34; font-weight: 600; }
 
     .btn-primary { background: var(--primary); border-color: var(--primary); }
     .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
@@ -96,6 +103,11 @@
         <i class="bi bi-people"></i> Patients
       </a>
     </div>
+    <div class="nav-item hidden" id="navMyPatients">
+      <a class="nav-link" href="#" onclick="showPage('mypatients', this); return false;">
+        <i class="bi bi-people"></i> My Patients
+      </a>
+    </div>
     <div class="nav-item">
       <a class="nav-link" href="#" onclick="showPage('doctors', this); return false;">
         <i class="bi bi-person-badge"></i> Doctors
@@ -103,7 +115,7 @@
     </div>
     <div class="nav-item">
       <a class="nav-link" href="#" onclick="showPage('appointments', this); return false;">
-        <i class="bi bi-calendar-check"></i> Appointments
+        <i class="bi bi-calendar-check"></i> <span id="navAppointmentsLabel">Appointments</span>
       </a>
     </div>
     <div class="nav-item admin-only">
@@ -135,14 +147,14 @@
     <div class="row g-3 mb-4">
       <div class="col-md-4">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#e8f4fd;"><i class="bi bi-people" style="color:#1a6ea8;"></i></div>
-          <div><h3 id="statPatients">—</h3><p>Total Patients</p></div>
+          <div class="stat-icon" style="background:#e8f4fd;"><i id="statCard1Icon" class="bi bi-people" style="color:#1a6ea8;"></i></div>
+          <div><h3 id="statPatients" style="font-size:1.4rem;">—</h3><p id="statCard1Label">Total Patients</p></div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="stat-card">
-          <div class="stat-icon" style="background:#e8f6f0;"><i class="bi bi-person-badge" style="color:#198754;"></i></div>
-          <div><h3 id="statDoctors">—</h3><p>Total Doctors</p></div>
+          <div class="stat-icon" style="background:#e8f6f0;"><i id="statCard2Icon" class="bi bi-person-badge" style="color:#198754;"></i></div>
+          <div><h3 id="statDoctors">—</h3><p id="statCard2Label">Total Doctors</p></div>
         </div>
       </div>
       <div class="col-md-4">
@@ -258,8 +270,34 @@
     <div class="section-card">
       <div class="table-responsive">
         <table class="table table-hover mb-0">
-          <thead><tr><th>#</th><th>Name</th><th>Gender</th><th>Date of Birth</th><th>Phone</th><th>Email</th><th>Address</th><th>Appts</th><th>Actions</th></tr></thead>
-          <tbody id="patientsTable"><tr><td colspan="9" class="text-center text-muted py-3">Loading...</td></tr></tbody>
+          <thead><tr><th>#</th><th>Name</th><th>Gender</th><th>Date of Birth</th><th>Phone</th><th>Email</th><th>Address</th><th>Assigned To</th><th>Appts</th><th>Actions</th></tr></thead>
+          <tbody id="patientsTable"><tr><td colspan="10" class="text-center text-muted py-3">Loading...</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MY PATIENTS PAGE (Doctor only) -->
+  <div class="page" id="page-mypatients">
+    <div class="topbar">
+      <h4><i class="bi bi-people me-2"></i>My Patients</h4>
+      <div class="d-flex gap-2 align-items-center">
+        <div class="input-group input-group-sm" style="width:220px;">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+          <input type="number" class="form-control" id="myPatientSearchId" placeholder="Get by ID…" min="1"/>
+          <button class="btn btn-outline-secondary" onclick="getMyPatientById()">Go</button>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm" onclick="loadMyPatients()"><i class="bi bi-arrow-clockwise"></i> All</button>
+        <button class="btn btn-primary btn-sm" onclick="openAddPatient()">
+          <i class="bi bi-plus-lg me-1"></i>Add Patient
+        </button>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead><tr><th>#</th><th>Name</th><th>Gender</th><th>Date of Birth</th><th>Phone</th><th>Email</th><th>Address</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="myPatientsTable"><tr><td colspan="9" class="text-center text-muted py-3">Loading...</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -268,14 +306,14 @@
   <!-- DOCTORS PAGE -->
   <div class="page" id="page-doctors">
     <div class="topbar">
-      <h4><i class="bi bi-person-badge me-2"></i>Doctors</h4>
+      <h4><i class="bi bi-person-badge me-2"></i><span id="doctorsPageTitle">Doctors</span></h4>
       <div class="d-flex gap-2 align-items-center">
-        <div class="input-group input-group-sm" style="width:220px;">
+        <div class="input-group input-group-sm non-patient-only" style="width:220px;">
           <span class="input-group-text"><i class="bi bi-search"></i></span>
           <input type="number" class="form-control" id="doctorSearchId" placeholder="Get by ID…" min="1"/>
           <button class="btn btn-outline-secondary" onclick="getDoctorById()">Go</button>
         </div>
-        <button class="btn btn-outline-secondary btn-sm" onclick="loadDoctors()"><i class="bi bi-arrow-clockwise"></i> All</button>
+        <button class="btn btn-outline-secondary btn-sm" onclick="loadDoctors()"><i class="bi bi-arrow-clockwise"></i> <span id="doctorsRefreshLabel">All</span></button>
         <button class="btn btn-primary btn-sm admin-only" onclick="openAddDoctor()">
           <i class="bi bi-plus-lg me-1"></i>Add Doctor
         </button>
@@ -294,7 +332,7 @@
   <!-- APPOINTMENTS PAGE -->
   <div class="page" id="page-appointments">
     <div class="topbar">
-      <h4><i class="bi bi-calendar-check me-2"></i>Appointments</h4>
+      <h4><i class="bi bi-calendar-check me-2"></i><span id="apptPageTitle">Appointments</span></h4>
       <div class="d-flex gap-2 align-items-center">
         <div class="input-group input-group-sm" style="width:220px;">
           <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -310,7 +348,7 @@
     <div class="section-card">
       <div class="table-responsive">
         <table class="table table-hover mb-0">
-          <thead><tr><th>#</th><th>Patient</th><th>Doctor</th><th>Specialization</th><th>Date</th><th>Reason</th><th>Notes</th><th>Status</th><th>Actions</th></tr></thead>
+          <thead><tr><th>#</th><th id="apptPatientTh">Patient</th><th>Doctor</th><th>Specialization</th><th>Date</th><th>Reason</th><th>Notes</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody id="appointmentsTable"><tr><td colspan="9" class="text-center text-muted py-3">Loading...</td></tr></tbody>
         </table>
       </div>
@@ -417,6 +455,63 @@
   </div>
 </div>
 
+<!-- Assign Patient to Doctor Modal -->
+<div class="modal fade" id="assignModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="assignModalTitle">Assign Patient to Doctor</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="assignPatientId"/>
+        <label class="form-label">Doctor</label>
+        <select class="form-select" id="assignDoctor"></select>
+        <div class="alert alert-danger mt-3 d-none" id="assignError"></div>
+        <div class="alert alert-success mt-3 d-none" id="assignSuccess"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" onclick="saveAssignment()"><i class="bi bi-check2 me-1"></i>Assign</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient Medical History Modal -->
+<div class="modal fade" id="historyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="historyModalTitle">Medical History</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="historyPatientId"/>
+        <div id="historyReadOnlyNotice" class="alert alert-secondary d-none">
+          <i class="bi bi-lock me-1"></i>Read-only — you can view existing records but cannot add new ones yet.
+        </div>
+        <div id="historyList" class="mb-3">Loading...</div>
+        <div id="historyAddSection">
+          <hr/>
+          <h6 class="fw-bold" style="color:var(--primary);">Add Entry</h6>
+          <div class="row g-2">
+            <div class="col-12"><input type="text" class="form-control form-control-sm" id="historyTitle" placeholder="Title (e.g. Diagnosis: Hypertension)"/></div>
+            <div class="col-12"><textarea class="form-control form-control-sm" id="historyDetails" rows="2" placeholder="Details"></textarea></div>
+            <div class="col-6"><input type="date" class="form-control form-control-sm" id="historyDate"/></div>
+            <div class="col-6"><input type="file" class="form-control form-control-sm" id="historyFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"/></div>
+            <div class="col-12"><button class="btn btn-primary btn-sm w-100" onclick="saveHistoryEntry()"><i class="bi bi-plus-lg me-1"></i>Add Entry</button></div>
+          </div>
+        </div>
+        <div class="alert alert-danger mt-2 d-none" id="historyError"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Detail View Modal -->
 <div class="modal fade" id="detailModal" tabindex="-1">
   <div class="modal-dialog">
@@ -452,6 +547,15 @@
   if (role === 'Patient') {
     document.getElementById('navPatients').classList.add('hidden');
     document.querySelectorAll('.non-patient-only').forEach(el => el.classList.add('hidden'));
+    document.getElementById('navAppointmentsLabel').textContent = 'My Appointments';
+    document.getElementById('apptPageTitle').textContent = 'My Appointments';
+    document.getElementById('apptPatientTh').remove();
+    document.getElementById('doctorsPageTitle').textContent = 'My Doctor';
+    document.getElementById('doctorsRefreshLabel').textContent = 'Refresh';
+  }
+  if (role === 'Doctor') {
+    document.getElementById('navPatients').classList.add('hidden');
+    document.getElementById('navMyPatients').classList.remove('hidden');
   }
 
   const h = () => ({ 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` });
@@ -498,8 +602,14 @@
     if (el) el.classList.add('active');
     if (name === 'dashboard')    loadDashboard();
     if (name === 'patients')     loadPatients();
+    if (name === 'mypatients')   resolveMyDoctorId().then(() => loadMyPatients());
     if (name === 'doctors')      loadDoctors();
     if (name === 'appointments') Promise.all([resolveMyDoctorId(), resolveMyPatientId()]).then(() => loadAppointments());
+  }
+
+  function refreshActivePatientsView() {
+    if (document.getElementById('page-mypatients').classList.contains('active')) loadMyPatients();
+    else loadPatients();
   }
 
   function logout() { localStorage.clear(); window.location.href = 'index.html'; }
@@ -508,6 +618,9 @@
     if (s === 'Scheduled') return 'badge-scheduled';
     if (s === 'Completed') return 'badge-completed';
     if (s === 'Cancelled') return 'badge-cancelled';
+    if (s === 'Pending') return 'badge-pending';
+    if (s === 'Denied') return 'badge-denied';
+    if (s === 'Accepted') return 'badge-accepted';
     return 'bg-secondary';
   }
 
@@ -523,39 +636,89 @@
   }
 
   // ── DASHBOARD ───────────────────────────────────────────────────────────────
+  function renderRecentAppointments(d) {
+    document.getElementById('statAppointments').textContent = d.length;
+    const tb = document.getElementById('recentAppointments');
+    if (!d.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">No appointments yet.</td></tr>'; return; }
+    tb.innerHTML = d.slice(0,5).map(a => `
+      <tr>
+        <td>${a.patientName}</td><td>${a.doctorName}</td>
+        <td><span class="badge bg-light text-dark">${a.doctorSpecialization}</span></td>
+        <td>${new Date(a.appointmentDate).toLocaleString()}</td>
+        <td><span class="badge ${statusClass(a.status)}">${a.status}</span></td>
+      </tr>`).join('');
+  }
+
   async function loadDashboard() {
     const apptUrl = role === 'Doctor' && myDoctorId ? `/appointments/doctor/${myDoctorId}`
                   : role === 'Patient' && myPatientId ? `/appointments/patient/${myPatientId}`
                   : '/appointments';
+
+    if (role === 'Patient') {
+      document.getElementById('statCard1Label').textContent = 'My Doctor';
+      document.getElementById('statCard1Icon').className = 'bi bi-person-badge';
+      document.getElementById('statCard2Label').textContent = 'Upcoming Appointments';
+      document.getElementById('statCard2Icon').className = 'bi bi-calendar-event';
+
+      const [aRes, apptRes] = await Promise.all([
+        myPatientId ? api(`/patientassignments/patient/${myPatientId}`) : Promise.resolve(null),
+        api(apptUrl)
+      ]);
+      const accepted = aRes?.ok ? (await aRes.json()).find(a => a.status === 'Accepted') : null;
+      document.getElementById('statPatients').textContent = accepted ? `Dr. ${accepted.doctorName}` : 'Not Assigned';
+
+      if (apptRes?.ok) {
+        const d = await apptRes.json();
+        const now = new Date();
+        document.getElementById('statDoctors').textContent = d.filter(a => a.status === 'Scheduled' && new Date(a.appointmentDate) > now).length;
+        renderRecentAppointments(d);
+      }
+      return;
+    }
+
+    document.getElementById('statCard1Label').textContent = 'Total Patients';
+    document.getElementById('statCard1Icon').className = 'bi bi-people';
+    document.getElementById('statCard2Label').textContent = 'Total Doctors';
+    document.getElementById('statCard2Icon').className = 'bi bi-person-badge';
+
     const [pR, dR, aR] = await Promise.all([api('/patients'), api('/doctors'), api(apptUrl)]);
     if (pR?.ok) { const d = await pR.json(); document.getElementById('statPatients').textContent = d.length; }
     if (dR?.ok) { const d = await dR.json(); document.getElementById('statDoctors').textContent = d.length; }
-    if (aR?.ok) {
-      const d = await aR.json();
-      document.getElementById('statAppointments').textContent = d.length;
-      const tb = document.getElementById('recentAppointments');
-      if (!d.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-3">No appointments yet.</td></tr>'; return; }
-      tb.innerHTML = d.slice(0,5).map(a => `
-        <tr>
-          <td>${a.patientName}</td><td>${a.doctorName}</td>
-          <td><span class="badge bg-light text-dark">${a.doctorSpecialization}</span></td>
-          <td>${new Date(a.appointmentDate).toLocaleString()}</td>
-          <td><span class="badge ${statusClass(a.status)}">${a.status}</span></td>
-        </tr>`).join('');
-    }
+    if (aR?.ok) renderRecentAppointments(await aR.json());
   }
 
   // ── PATIENTS ────────────────────────────────────────────────────────────────
   async function loadPatients() {
-    const res = await api('/patients');
     const tb = document.getElementById('patientsTable');
-    if (!res?.ok) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
-    renderPatients(await res.json());
+    const reqs = [api('/patients')];
+    if (role === 'Admin') reqs.push(api('/patientassignments'));
+    const [pRes, aRes] = await Promise.all(reqs);
+    if (!pRes?.ok) { tb.innerHTML = '<tr><td colspan="10" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
+
+    let latestAssignmentByPatient = {};
+    if (aRes?.ok) {
+      const assignments = await aRes.json();
+      for (const a of assignments) {
+        const existing = latestAssignmentByPatient[a.patientId];
+        if (!existing || new Date(a.assignedAt) > new Date(existing.assignedAt)) {
+          latestAssignmentByPatient[a.patientId] = a;
+        }
+      }
+    }
+    renderPatients(await pRes.json(), latestAssignmentByPatient);
   }
 
-  function renderPatients(data) {
+  function assignedToCell(assignment) {
+    if (!assignment) return '<span class="text-muted">Unassigned</span>';
+    const cls = assignment.status === 'Accepted' ? 'assigned-accepted'
+              : assignment.status === 'Pending'  ? 'assigned-pending'
+              : 'assigned-denied';
+    return `<span class="${cls}">Dr. ${assignment.doctorName}</span>`;
+  }
+
+  function renderPatients(data, latestAssignmentByPatient = {}) {
     const tb = document.getElementById('patientsTable');
-    if (!data.length) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-3">No patients found.</td></tr>'; return; }
+    if (!data.length) { tb.innerHTML = '<tr><td colspan="10" class="text-center text-muted py-3">No patients found.</td></tr>'; return; }
     tb.innerHTML = data.map(p => `
       <tr>
         <td>${p.id}</td>
@@ -565,11 +728,14 @@
         <td>${p.phoneNumber}</td>
         <td>${p.email}</td>
         <td>${p.address || '—'}</td>
+        <td>${assignedToCell(latestAssignmentByPatient[p.id])}</td>
         <td><span class="badge bg-primary">${p.totalAppointments}</span></td>
         <td>
           <div class="d-flex gap-1">
             <button class="btn btn-sm btn-outline-info" title="View (GET by ID)" onclick='viewPatient(${JSON.stringify(p)})'><i class="bi bi-eye"></i></button>
             ${role === 'Admin' ? `
+              <button class="btn btn-sm btn-outline-primary" title="Assign to Doctor" onclick="openAssignPatient(${p.id}, '${(p.firstName+' '+p.lastName).replace(/'/g,"\\'")}')"><i class="bi bi-person-check"></i></button>
+              <button class="btn btn-sm btn-outline-secondary" title="Medical History" onclick="openHistory(${p.id}, '${(p.firstName+' '+p.lastName).replace(/'/g,"\\'")}')"><i class="bi bi-journal-medical"></i></button>
               <button class="btn btn-sm btn-outline-warning" title="Edit (PUT)" onclick='openEditPatient(${JSON.stringify(p)})'><i class="bi bi-pencil"></i></button>
               <button class="btn btn-sm btn-outline-danger" title="Delete (DELETE)" onclick="deletePatient(${p.id})"><i class="bi bi-trash"></i></button>
             ` : ''}
@@ -583,7 +749,7 @@
     if (!id) return;
     const res = await api(`/patients/${id}`);
     if (res?.ok) renderPatients([await res.json()]);
-    else document.getElementById('patientsTable').innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Patient not found.</td></tr>';
+    else document.getElementById('patientsTable').innerHTML = '<tr><td colspan="10" class="text-center text-danger py-3">Patient not found.</td></tr>';
   }
 
   function viewPatient(p) {
@@ -634,7 +800,7 @@
     const err = document.getElementById('patientError');
     if (res?.ok) {
       bootstrap.Modal.getInstance(document.getElementById('patientModal')).hide();
-      loadPatients();
+      refreshActivePatientsView();
     } else {
       err.textContent = 'Failed to save patient. Check all fields.';
       err.classList.remove('d-none');
@@ -647,10 +813,236 @@
     loadPatients();
   }
 
+  // ── ASSIGN PATIENT TO DOCTOR (Admin) ───────────────────────────────────────────
+  async function openAssignPatient(patientId, patientName) {
+    document.getElementById('assignPatientId').value = patientId;
+    document.getElementById('assignModalTitle').textContent = `Assign ${patientName} to Doctor`;
+    document.getElementById('assignError').classList.add('d-none');
+    document.getElementById('assignSuccess').classList.add('d-none');
+    const res = await api('/doctors');
+    if (res?.ok) {
+      const doctors = await res.json();
+      document.getElementById('assignDoctor').innerHTML = doctors.map(d =>
+        `<option value="${d.id}">Dr. ${d.firstName} ${d.lastName} — ${d.specialization}</option>`).join('');
+    }
+    new bootstrap.Modal(document.getElementById('assignModal')).show();
+  }
+
+  async function saveAssignment() {
+    const patientId = parseInt(document.getElementById('assignPatientId').value);
+    const doctorId  = parseInt(document.getElementById('assignDoctor').value);
+    const err = document.getElementById('assignError');
+    const ok  = document.getElementById('assignSuccess');
+    err.classList.add('d-none');
+    ok.classList.add('d-none');
+    const res = await api('/patientassignments', { method: 'POST', body: JSON.stringify({ patientId, doctorId }) });
+    if (res?.ok) {
+      ok.textContent = 'Patient assigned successfully. Awaiting doctor confirmation.';
+      ok.classList.remove('d-none');
+      loadPatients();
+    } else {
+      err.textContent = (await res?.text()) || 'Failed to assign patient.';
+      err.classList.remove('d-none');
+    }
+  }
+
+  // ── MEDICAL HISTORY (Admin, Doctor) ────────────────────────────────────────────
+  async function openHistory(patientId, patientName, editable = true) {
+    document.getElementById('historyPatientId').value = patientId;
+    document.getElementById('historyModalTitle').textContent = `Medical History — ${patientName}`;
+    document.getElementById('historyTitle').value = '';
+    document.getElementById('historyDetails').value = '';
+    document.getElementById('historyDate').value = '';
+    document.getElementById('historyFile').value = '';
+    document.getElementById('historyError').classList.add('d-none');
+    document.getElementById('historyAddSection').classList.toggle('hidden', !editable);
+    document.getElementById('historyReadOnlyNotice').classList.toggle('d-none', editable);
+    new bootstrap.Modal(document.getElementById('historyModal')).show();
+    await loadHistory(patientId);
+  }
+
+  async function loadHistory(patientId) {
+    const list = document.getElementById('historyList');
+    list.innerHTML = '<div class="text-muted text-center py-2">Loading...</div>';
+    const res = await api(`/patienthistory/patient/${patientId}`);
+    if (!res?.ok) { list.innerHTML = '<div class="text-danger text-center py-2">Failed to load history.</div>'; return; }
+    const entries = await res.json();
+    if (!entries.length) { list.innerHTML = '<div class="text-muted text-center py-2">No history recorded yet.</div>'; return; }
+    list.innerHTML = entries.map(e => `
+      <div class="border rounded p-2 mb-2">
+        <div class="d-flex justify-content-between">
+          <strong>${e.title}</strong>
+          <small class="text-muted">${new Date(e.recordDate).toLocaleDateString()}</small>
+        </div>
+        <div class="small">${e.details}</div>
+        <div class="small text-muted mt-1">Recorded by: ${e.recordedByDoctorName}</div>
+        ${e.hasAttachment ? `
+          <button class="btn btn-sm btn-outline-primary mt-2" onclick="downloadAttachment(${e.id}, '${(e.attachmentFileName||'file').replace(/'/g,"\\'")}')">
+            <i class="bi bi-paperclip me-1"></i>${e.attachmentFileName || 'Download attachment'}
+          </button>
+        ` : ''}
+      </div>`).join('');
+  }
+
+  async function uploadFile(url, formData) {
+    try {
+      const res = await fetch(API + url, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` }, body: formData });
+      if (res.status === 401) { logout(); return null; }
+      return res;
+    } catch { return null; }
+  }
+
+  async function downloadAttachment(entryId, fileName) {
+    const res = await fetch(`${API}/patienthistory/${entryId}/attachment`, { headers: { 'Authorization': `Bearer ${token}` } });
+    if (!res.ok) { alert('Failed to download attachment.'); return; }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  async function saveHistoryEntry() {
+    const patientId = parseInt(document.getElementById('historyPatientId').value);
+    const err = document.getElementById('historyError');
+    const fileInput = document.getElementById('historyFile');
+    const body = {
+      patientId,
+      title:   document.getElementById('historyTitle').value,
+      details: document.getElementById('historyDetails').value,
+      recordDate: document.getElementById('historyDate').value ? document.getElementById('historyDate').value + 'T00:00:00' : null
+    };
+    if (!body.title || !body.details) {
+      err.textContent = 'Title and details are required.';
+      err.classList.remove('d-none');
+      return;
+    }
+    const res = await api('/patienthistory', { method: 'POST', body: JSON.stringify(body) });
+    if (res?.ok) {
+      const created = await res.json();
+      let uploadFailed = false;
+      if (fileInput.files.length) {
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+        const uploadRes = await uploadFile(`/patienthistory/${created.id}/attachment`, formData);
+        if (!uploadRes?.ok) {
+          uploadFailed = true;
+          err.textContent = (await uploadRes?.text()) || 'Entry saved, but the file failed to upload.';
+          err.classList.remove('d-none');
+        }
+      }
+      document.getElementById('historyTitle').value = '';
+      document.getElementById('historyDetails').value = '';
+      document.getElementById('historyDate').value = '';
+      document.getElementById('historyFile').value = '';
+      if (!uploadFailed) err.classList.add('d-none');
+      loadHistory(patientId);
+    } else {
+      err.textContent = (await res?.text()) || 'Failed to save entry.';
+      err.classList.remove('d-none');
+    }
+  }
+
+  // ── MY PATIENTS (Doctor) ────────────────────────────────────────────────────────
+  let myPatientsCache = [];
+
+  async function loadMyPatients() {
+    const tb = document.getElementById('myPatientsTable');
+    if (!myDoctorId) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-3">Resolving your doctor profile...</td></tr>'; return; }
+    const [aRes, pRes] = await Promise.all([api(`/patientassignments/doctor/${myDoctorId}`), api('/patients')]);
+    if (!aRes?.ok) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
+    const assignments = await aRes.json();
+    const patientById = {};
+    if (pRes?.ok) { (await pRes.json()).forEach(p => patientById[p.id] = p); }
+    myPatientsCache = assignments.map(a => ({ assignment: a, patient: patientById[a.patientId] })).filter(row => row.patient);
+    renderMyPatients(myPatientsCache);
+  }
+
+  function getMyPatientById() {
+    const id = parseInt(document.getElementById('myPatientSearchId').value);
+    if (!id) return;
+    const filtered = myPatientsCache.filter(row => row.patient.id === id);
+    if (!filtered.length) { document.getElementById('myPatientsTable').innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Patient not found in your list.</td></tr>'; return; }
+    renderMyPatients(filtered);
+  }
+
+  function myPatientActions(a, p) {
+    const name = (p.firstName + ' ' + p.lastName).replace(/'/g,"\\'");
+    const viewBtn = `<button class="btn btn-sm btn-outline-primary" title="View Medical History" onclick="openHistory(${p.id}, '${name}', ${a.status === 'Accepted'})"><i class="bi bi-journal-medical"></i></button>`;
+    if (a.status === 'Pending') {
+      return viewBtn +
+        `<button class="btn btn-sm btn-outline-danger" title="Deny" onclick="denyAssignment(${a.id})"><i class="bi bi-x-lg"></i></button>` +
+        `<button class="btn btn-sm btn-outline-success" title="Accept" onclick="acceptAssignment(${a.id})"><i class="bi bi-check-lg"></i></button>`;
+    }
+    if (a.status === 'Accepted') {
+      return viewBtn +
+        `<button class="btn btn-sm btn-outline-warning" title="Edit (PUT)" onclick='openEditPatient(${JSON.stringify(p)})'><i class="bi bi-pencil"></i></button>` +
+        `<button class="btn btn-sm btn-outline-secondary" title="Remove from My Patients" onclick="removeMyPatient(${a.id})"><i class="bi bi-person-dash"></i></button>`;
+    }
+    if (a.status === 'Denied') {
+      return viewBtn +
+        `<button class="btn btn-sm btn-outline-secondary" title="Remove from My Patients" onclick="removeMyPatient(${a.id})"><i class="bi bi-person-dash"></i></button>`;
+    }
+    return viewBtn;
+  }
+
+  function renderMyPatients(rows) {
+    const tb = document.getElementById('myPatientsTable');
+    if (!rows.length) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-3">No patients assigned yet.</td></tr>'; return; }
+    tb.innerHTML = rows.map(({ assignment: a, patient: p }) => `
+      <tr>
+        <td>${p.id}</td>
+        <td><strong>${p.firstName} ${p.lastName}</strong></td>
+        <td>${p.gender}</td>
+        <td>${new Date(p.dateOfBirth).toLocaleDateString()}</td>
+        <td>${p.phoneNumber}</td>
+        <td>${p.email}</td>
+        <td>${p.address || '—'}</td>
+        <td><span class="badge ${statusClass(a.status)}">${a.status}</span></td>
+        <td><div class="d-flex gap-1">${myPatientActions(a, p)}</div></td>
+      </tr>`).join('');
+  }
+
+  async function acceptAssignment(id) {
+    const res = await api(`/patientassignments/${id}/accept`, { method: 'PATCH' });
+    if (!res?.ok) alert((await res?.text()) || 'Failed to accept patient.');
+    loadMyPatients();
+  }
+
+  async function denyAssignment(id) {
+    if (!confirm('Are you sure you want to deny this patient assignment?')) return;
+    const res = await api(`/patientassignments/${id}/deny`, { method: 'PATCH' });
+    if (!res?.ok) alert((await res?.text()) || 'Failed to deny patient.');
+    loadMyPatients();
+  }
+
+  async function removeMyPatient(assignmentId) {
+    if (!confirm('Remove this patient from your list? Their record is not deleted — an admin can reassign them later.')) return;
+    const res = await api(`/patientassignments/${assignmentId}`, { method: 'DELETE' });
+    if (!res?.ok) alert((await res?.text()) || 'Failed to remove patient.');
+    loadMyPatients();
+  }
+
   // ── DOCTORS ─────────────────────────────────────────────────────────────────
   async function loadDoctors() {
-    const res = await api('/doctors');
     const tb = document.getElementById('doctorsTable');
+    if (role === 'Patient') {
+      await resolveMyPatientId();
+      if (!myPatientId) { tb.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">Unable to resolve your patient profile.</td></tr>'; return; }
+      const aRes = await api(`/patientassignments/patient/${myPatientId}`);
+      if (!aRes?.ok) { tb.innerHTML = '<tr><td colspan="8" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
+      const accepted = (await aRes.json()).find(a => a.status === 'Accepted');
+      if (!accepted) { tb.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-3">No doctor has accepted you yet.</td></tr>'; return; }
+      const dRes = await api(`/doctors/${accepted.doctorId}`);
+      if (!dRes?.ok) { tb.innerHTML = '<tr><td colspan="8" class="text-center text-danger py-3">Could not load doctor details.</td></tr>'; return; }
+      renderDoctors([await dRes.json()]);
+      return;
+    }
+    const res = await api('/doctors');
     if (!res?.ok) { tb.innerHTML = '<tr><td colspan="8" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
     renderDoctors(await res.json());
   }
@@ -661,7 +1053,7 @@
     tb.innerHTML = data.map(d => `
       <tr>
         <td>${d.id}</td>
-        <td><strong>Dr. ${d.firstName} ${d.lastName}</strong></td>
+        <td><strong>Dr. ${d.firstName} ${d.lastName}</strong>${d.assignmentStatus ? ` <span class="badge ${statusClass(d.assignmentStatus)}">${d.assignmentStatus}</span>` : ''}</td>
         <td><span class="badge bg-info text-dark">${d.specialization}</span></td>
         <td>${d.department}</td>
         <td>${d.phoneNumber}</td>
@@ -752,17 +1144,19 @@
               : '/appointments';
     const res = await api(url);
     const tb = document.getElementById('appointmentsTable');
-    if (!res?.ok) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Access denied.</td></tr>'; return; }
+    const apptColspan = role === 'Patient' ? 8 : 9;
+    if (!res?.ok) { tb.innerHTML = `<tr><td colspan="${apptColspan}" class="text-center text-danger py-3">Access denied.</td></tr>`; return; }
     renderAppointments(await res.json());
   }
 
   function renderAppointments(data) {
     const tb = document.getElementById('appointmentsTable');
-    if (!data.length) { tb.innerHTML = '<tr><td colspan="9" class="text-center text-muted py-3">No appointments found.</td></tr>'; return; }
+    const apptColspan = role === 'Patient' ? 8 : 9;
+    if (!data.length) { tb.innerHTML = `<tr><td colspan="${apptColspan}" class="text-center text-muted py-3">No appointments found.</td></tr>`; return; }
     tb.innerHTML = data.map(a => `
       <tr>
         <td>${a.id}</td>
-        <td>${a.patientName}</td>
+        ${role !== 'Patient' ? `<td>${a.patientName}</td>` : ''}
         <td>Dr. ${a.doctorName}</td>
         <td><span class="badge bg-info text-dark">${a.doctorSpecialization}</span></td>
         <td>${new Date(a.appointmentDate).toLocaleString()}</td>
@@ -772,8 +1166,14 @@
         <td>
           <div class="d-flex gap-1">
             <button class="btn btn-sm btn-outline-info" title="View (GET by ID)" onclick='viewAppointment(${JSON.stringify(a)})'><i class="bi bi-eye"></i></button>
-            ${a.status !== 'Cancelled' ? `
-              ${role !== 'Patient' ? `<button class="btn btn-sm btn-outline-warning" title="Update (PUT)" onclick='openEditAppointment(${JSON.stringify(a)})'><i class="bi bi-pencil"></i></button>` : ''}
+            ${role !== 'Patient' && a.status !== 'Cancelled' && a.status !== 'Denied' ? `
+              <button class="btn btn-sm btn-outline-warning" title="Update (PUT)" onclick='openEditAppointment(${JSON.stringify(a)})'><i class="bi bi-pencil"></i></button>
+            ` : ''}
+            ${role === 'Doctor' && a.status === 'Pending' && a.doctorId === myDoctorId ? `
+              <button class="btn btn-sm btn-outline-danger" title="Deny" onclick="denyAppointment(${a.id})"><i class="bi bi-x-lg"></i></button>
+              <button class="btn btn-sm btn-outline-success" title="Accept" onclick="acceptAppointment(${a.id})"><i class="bi bi-check-lg"></i></button>
+            ` : ''}
+            ${a.status !== 'Cancelled' && a.status !== 'Denied' && !(role === 'Doctor' && a.status === 'Pending' && a.doctorId === myDoctorId) ? `
               <button class="btn btn-sm btn-outline-danger" title="Cancel (PATCH)" onclick="cancelAppointment(${a.id})"><i class="bi bi-x-circle"></i></button>
             ` : ''}
           </div>
@@ -786,7 +1186,7 @@
     if (!id) return;
     const res = await api(`/appointments/${id}`);
     if (res?.ok) renderAppointments([await res.json()]);
-    else document.getElementById('appointmentsTable').innerHTML = '<tr><td colspan="9" class="text-center text-danger py-3">Appointment not found.</td></tr>';
+    else document.getElementById('appointmentsTable').innerHTML = `<tr><td colspan="${role === 'Patient' ? 8 : 9}" class="text-center text-danger py-3">Appointment not found.</td></tr>`;
   }
 
   function viewAppointment(a) {
@@ -895,6 +1295,19 @@
     loadAppointments();
   }
 
+  async function acceptAppointment(id) {
+    const res = await api(`/appointments/${id}/accept`, { method: 'PATCH' });
+    if (!res?.ok) alert((await res?.text()) || 'Failed to accept appointment.');
+    loadAppointments();
+  }
+
+  async function denyAppointment(id) {
+    if (!confirm('Are you sure you want to deny this appointment?')) return;
+    const res = await api(`/appointments/${id}/deny`, { method: 'PATCH' });
+    if (!res?.ok) alert((await res?.text()) || 'Failed to deny appointment.');
+    loadAppointments();
+  }
+
   function toggleProfileForm() {
     const role = document.getElementById('regRole').value;
     document.getElementById('regDoctorProfile').classList.toggle('hidden', role !== 'Doctor');
@@ -908,23 +1321,9 @@
     err.classList.add('d-none');
     ok.classList.add('d-none');
 
-    // Step 1: register account
-    const accountBody = {
-      username: document.getElementById('regUsername').value,
-      email:    document.getElementById('regEmail').value,
-      password: document.getElementById('regPassword').value,
-      role
-    };
-    const res = await api('/auth/register', { method: 'POST', body: JSON.stringify(accountBody) });
-    if (!res?.ok) {
-      const t = await res?.text();
-      err.textContent = t || 'Failed to register user.';
-      err.classList.remove('d-none');
-      return;
-    }
-
-    // Step 2: create profile
+    // Step 1: create profile (Doctor/Patient) so we have an ID to link the account to
     let profileRes = null;
+    let profileId = null;
     if (role === 'Doctor') {
       const body = {
         firstName:      document.getElementById('regDFirstName').value,
@@ -949,9 +1348,29 @@
     }
 
     if (profileRes && !profileRes.ok) {
-      ok.textContent = `Account "${accountBody.username}" created but profile could not be saved. Add the profile manually.`;
-      ok.className = 'alert alert-warning';
-      ok.classList.remove('d-none');
+      const t = await profileRes.text();
+      err.textContent = t || 'Failed to create profile.';
+      err.classList.remove('d-none');
+      return;
+    }
+    if (profileRes) {
+      const profile = await profileRes.json();
+      profileId = profile.id;
+    }
+
+    // Step 2: register account, linked to the profile via ProfileId
+    const accountBody = {
+      username: document.getElementById('regUsername').value,
+      email:    document.getElementById('regEmail').value,
+      password: document.getElementById('regPassword').value,
+      role,
+      profileId
+    };
+    const res = await api('/auth/register', { method: 'POST', body: JSON.stringify(accountBody) });
+    if (!res?.ok) {
+      const t = await res?.text();
+      err.textContent = t || 'Failed to register user.';
+      err.classList.remove('d-none');
       return;
     }
 

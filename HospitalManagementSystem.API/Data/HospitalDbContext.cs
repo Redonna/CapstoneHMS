@@ -11,6 +11,8 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<Doctor> Doctors => Set<Doctor>();
         public DbSet<Appointment> Appointments => Set<Appointment>();
         public DbSet<User> Users => Set<User>();
+        public DbSet<DoctorPatientAssignment> DoctorPatientAssignments => Set<DoctorPatientAssignment>();
+        public DbSet<PatientHistoryEntry> PatientHistoryEntries => Set<PatientHistoryEntry>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +30,32 @@ namespace HospitalManagementSystem.API.Data
                 .HasOne(a => a.Doctor)
                 .WithMany(d => d.Appointments)
                 .HasForeignKey(a => a.DoctorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // DoctorPatientAssignment -> Patient / Doctor
+            modelBuilder.Entity<DoctorPatientAssignment>()
+                .HasOne(a => a.Patient)
+                .WithMany()
+                .HasForeignKey(a => a.PatientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<DoctorPatientAssignment>()
+                .HasOne(a => a.Doctor)
+                .WithMany()
+                .HasForeignKey(a => a.DoctorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // PatientHistoryEntry -> Patient / RecordedByDoctor
+            modelBuilder.Entity<PatientHistoryEntry>()
+                .HasOne(h => h.Patient)
+                .WithMany()
+                .HasForeignKey(h => h.PatientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<PatientHistoryEntry>()
+                .HasOne(h => h.RecordedByDoctor)
+                .WithMany()
+                .HasForeignKey(h => h.RecordedByDoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Seed admin user (password: Admin@123)

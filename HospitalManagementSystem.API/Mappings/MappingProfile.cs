@@ -49,6 +49,12 @@ namespace HospitalManagementSystem.API.Mappings
                     opt => opt.MapFrom(src => src.RecordedByDoctor == null ? "Admin" : src.RecordedByDoctor.FirstName + " " + src.RecordedByDoctor.LastName))
                 .ForMember(dest => dest.HasAttachment,
                     opt => opt.MapFrom(src => !string.IsNullOrEmpty(src.AttachmentStoredPath)));
+
+            // Vitals
+            CreateMap<VitalsCreateDto, VitalsRecord>();
+            CreateMap<VitalsRecord, VitalsReadDto>()
+                .ForMember(dest => dest.RecordedByDoctorName,
+                    opt => opt.MapFrom(src => src.RecordedByDoctor == null ? "Admin" : src.RecordedByDoctor.FirstName + " " + src.RecordedByDoctor.LastName));
         }
     }
 }

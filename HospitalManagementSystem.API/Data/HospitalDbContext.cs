@@ -13,6 +13,7 @@ namespace HospitalManagementSystem.API.Data
         public DbSet<User> Users => Set<User>();
         public DbSet<DoctorPatientAssignment> DoctorPatientAssignments => Set<DoctorPatientAssignment>();
         public DbSet<PatientHistoryEntry> PatientHistoryEntries => Set<PatientHistoryEntry>();
+        public DbSet<VitalsRecord> VitalsRecords => Set<VitalsRecord>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +57,27 @@ namespace HospitalManagementSystem.API.Data
                 .HasOne(h => h.RecordedByDoctor)
                 .WithMany()
                 .HasForeignKey(h => h.RecordedByDoctorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // VitalsRecord -> Patient / RecordedByDoctor
+            modelBuilder.Entity<VitalsRecord>()
+                .Property(v => v.Temperature)
+                .HasPrecision(4, 1);
+
+            modelBuilder.Entity<VitalsRecord>()
+                .Property(v => v.Weight)
+                .HasPrecision(5, 1);
+
+            modelBuilder.Entity<VitalsRecord>()
+                .HasOne(v => v.Patient)
+                .WithMany()
+                .HasForeignKey(v => v.PatientId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VitalsRecord>()
+                .HasOne(v => v.RecordedByDoctor)
+                .WithMany()
+                .HasForeignKey(v => v.RecordedByDoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             // Seed admin user (password: Admin@123)

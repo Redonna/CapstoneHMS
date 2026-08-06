@@ -64,5 +64,15 @@ namespace HospitalManagementSystem.API.Controllers
             if (error != null) return NotFound(error);
             return PhysicalFile(path!, "application/octet-stream", fileName);
         }
+
+        /// <summary>Bullet-point summary of a patient's medical history document(s), if any are attached</summary>
+        [HttpGet("patient/{patientId}/document-summary")]
+        [Authorize(Roles = "Admin,Doctor,Patient")]
+        public async Task<IActionResult> GetDocumentSummary(int patientId)
+        {
+            if (patientId <= 0) return BadRequest("Patient ID must be greater than 0.");
+            var (bullets, hasDocument) = await _service.GetHistoryDocumentSummaryAsync(patientId);
+            return Ok(new HistoryDocumentSummaryResponseDto { HasDocument = hasDocument, Bullets = bullets });
+        }
     }
 }

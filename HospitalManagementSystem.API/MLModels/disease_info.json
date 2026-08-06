@@ -1,0 +1,656 @@
+{
+  "(vertigo) Paroymsal Positional Vertigo": {
+    "description": "(Vertigo) Paroxysmal Positional Vertigo is a type of dizziness caused by specific head movements.",
+    "precautions": [
+      "lie down",
+      "avoid sudden change in body",
+      "avoid abrupt head movment",
+      "relax"
+    ],
+    "medications": [
+      "Topical treatments",
+      "Antibiotics",
+      "Oral medications",
+      "Hormonal treatments",
+      "Isotretinoin"
+    ]
+  },
+  "AIDS": {
+    "description": "AIDS (Acquired Immunodeficiency Syndrome) is a disease caused by HIV that weakens the immune system.",
+    "precautions": [
+      "avoid open cuts",
+      "wear ppe if possible",
+      "consult doctor",
+      "follow up"
+    ],
+    "medications": [
+      "Antiretroviral drugs",
+      "Protease inhibitors",
+      "Integrase inhibitors",
+      "Entry inhibitors",
+      "Fusion inhibitors"
+    ]
+  },
+  "Acne": {
+    "description": "Acne is a skin condition that occurs when hair follicles become clogged with oil and dead skin cells.",
+    "precautions": [
+      "bath twice",
+      "avoid fatty spicy food",
+      "drink plenty of water",
+      "avoid too many products"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Pain relievers",
+      "Antihistamines",
+      "Corticosteroids",
+      "Topical treatments"
+    ]
+  },
+  "Alcoholic hepatitis": {
+    "description": "Alcoholic hepatitis is inflammation of the liver due to alcohol consumption.",
+    "precautions": [
+      "stop alcohol consumption",
+      "consult doctor",
+      "medication",
+      "follow up"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Isoniazid",
+      "Rifampin",
+      "Ethambutol",
+      "Pyrazinamide"
+    ]
+  },
+  "Allergy": {
+    "description": "Allergy is an immune system reaction to a substance in the environment.",
+    "precautions": [
+      "apply calamine",
+      "cover area with bandage",
+      "use ice to compress itching"
+    ],
+    "medications": [
+      "Antihistamines",
+      "Decongestants",
+      "Epinephrine",
+      "Corticosteroids",
+      "Immunotherapy"
+    ]
+  },
+  "Arthritis": {
+    "description": "Arthritis is inflammation of one or more joints, causing pain and stiffness.",
+    "precautions": [
+      "exercise",
+      "use hot and cold therapy",
+      "try acupuncture",
+      "massage"
+    ],
+    "medications": [
+      "Vestibular rehabilitation",
+      "Canalith repositioning",
+      "Medications for nausea",
+      "Surgery",
+      "Home exercises"
+    ]
+  },
+  "Bronchial Asthma": {
+    "description": "Bronchial Asthma is a respiratory condition characterized by inflammation of the airways.",
+    "precautions": [
+      "switch to loose cloothing",
+      "take deep breaths",
+      "get away from trigger",
+      "seek help"
+    ],
+    "medications": [
+      "Bronchodilators",
+      "Inhaled corticosteroids",
+      "Leukotriene modifiers",
+      "Mast cell stabilizers",
+      "Anticholinergics"
+    ]
+  },
+  "Cervical spondylosis": {
+    "description": "Cervical spondylosis is a degenerative condition of the cervical spine.",
+    "precautions": [
+      "use heating pad or cold pack",
+      "exercise",
+      "take otc pain reliver",
+      "consult doctor"
+    ],
+    "medications": [
+      "Pain relievers",
+      "Muscle relaxants",
+      "Physical therapy",
+      "Neck braces",
+      "Corticosteroids"
+    ]
+  },
+  "Chicken pox": {
+    "description": "Chicken pox is a highly contagious viral infection causing an itchy rash.",
+    "precautions": [
+      "use neem in bathing ",
+      "consume neem leaves",
+      "take vaccine",
+      "avoid public places"
+    ],
+    "medications": [
+      "Antiviral drugs",
+      "Pain relievers",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions"
+    ]
+  },
+  "Chronic cholestasis": {
+    "description": "Chronic cholestasis is a condition where bile flow from the liver is reduced for a prolonged period.",
+    "precautions": [
+      "cold baths",
+      "anti itch medicine",
+      "consult doctor",
+      "eat healthy"
+    ],
+    "medications": [
+      "Ursodeoxycholic acid",
+      "Cholestyramine",
+      "Methotrexate",
+      "Corticosteroids",
+      "Liver transplant"
+    ]
+  },
+  "Common Cold": {
+    "description": "Common Cold is a viral infection of the upper respiratory tract.",
+    "precautions": [
+      "drink vitamin c rich drinks",
+      "take vapour",
+      "avoid cold food",
+      "keep fever in check"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Antiviral drugs",
+      "Antifungal drugs",
+      "IV fluids",
+      "Oxygen therapy"
+    ]
+  },
+  "Dengue": {
+    "description": "Dengue is a mosquito-borne viral infection causing flu-like symptoms.",
+    "precautions": [
+      "drink papaya leaf juice",
+      "avoid fatty spicy food",
+      "keep mosquitos away",
+      "keep hydrated"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Antipyretics",
+      "Analgesics",
+      "IV fluids",
+      "Corticosteroids"
+    ]
+  },
+  "Diabetes": {
+    "description": "Diabetes is a chronic condition that affects how the body processes blood sugar.",
+    "precautions": [
+      "have balanced diet",
+      "exercise",
+      "consult doctor",
+      "follow up"
+    ],
+    "medications": [
+      "Insulin",
+      "Metformin",
+      "Sulfonylureas",
+      "DPP-4 inhibitors",
+      "GLP-1 receptor agonists"
+    ]
+  },
+  "Dimorphic hemmorhoids(piles)": {
+    "description": "Dimorphic hemmorhoids(piles) is a condition characterized by swollen blood vessels in the rectum.",
+    "precautions": [
+      "avoid fatty spicy food",
+      "consume witch hazel",
+      "warm bath with epsom salt",
+      "consume alovera juice"
+    ],
+    "medications": [
+      "Nitroglycerin",
+      "Aspirin",
+      "Beta-blockers",
+      "Calcium channel blockers",
+      "Thrombolytic drugs"
+    ]
+  },
+  "Drug Reaction": {
+    "description": "Drug Reaction occurs when the body reacts adversely to a medication.",
+    "precautions": [
+      "stop irritation",
+      "consult nearest hospital",
+      "stop taking drug",
+      "follow up"
+    ],
+    "medications": [
+      "Antihistamines",
+      "Epinephrine",
+      "Corticosteroids",
+      "Antibiotics",
+      "Antifungal Cream"
+    ]
+  },
+  "Fungal infection": {
+    "description": "Fungal infection is a common skin condition caused by fungi.",
+    "precautions": [
+      "bath twice",
+      "use detol or neem in bathing water",
+      "keep infected area dry",
+      "use clean cloths"
+    ],
+    "medications": [
+      "Antifungal Cream",
+      "Fluconazole",
+      "Terbinafine",
+      "Clotrimazole",
+      "Ketoconazole"
+    ]
+  },
+  "GERD": {
+    "description": "GERD (Gastroesophageal Reflux Disease) is a digestive disorder that affects the lower esophageal sphincter.",
+    "precautions": [
+      "avoid fatty spicy food",
+      "avoid lying down after eating",
+      "maintain healthy weight",
+      "exercise"
+    ],
+    "medications": [
+      "Proton Pump Inhibitors (PPIs)",
+      "H2 Blockers",
+      "Antacids",
+      "Prokinetics",
+      "Antibiotics"
+    ]
+  },
+  "Gastroenteritis": {
+    "description": "Gastroenteritis is an inflammation of the stomach and intestines, typically caused by a virus or bacteria.",
+    "precautions": [
+      "stop eating solid food for while",
+      "try taking small sips of water",
+      "rest",
+      "ease back into eating"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Antiemetic drugs",
+      "Antidiarrheal drugs",
+      "IV fluids",
+      "Probiotics"
+    ]
+  },
+  "Heart attack": {
+    "description": "Heart attack is a sudden and severe reduction in blood flow to the heart muscle.",
+    "precautions": [
+      "call ambulance",
+      "chew or swallow asprin",
+      "keep calm"
+    ],
+    "medications": [
+      "Compression stockings",
+      "Exercise",
+      "Elevating the legs",
+      "Sclerotherapy",
+      "Laser treatments"
+    ]
+  },
+  "Hepatitis B": {
+    "description": "Hepatitis B is a viral infection that attacks the liver.",
+    "precautions": [
+      "consult nearest hospital",
+      "vaccination",
+      "eat healthy",
+      "medication"
+    ],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ]
+  },
+  "Hepatitis C": {
+    "description": "Hepatitis C is a viral infection that causes liver inflammation.",
+    "precautions": [
+      "Consult nearest hospital",
+      "vaccination",
+      "eat healthy",
+      "medication"
+    ],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ]
+  },
+  "Hepatitis D": {
+    "description": "Hepatitis D is a serious liver disease caused by the hepatitis D virus.",
+    "precautions": [
+      "consult doctor",
+      "medication",
+      "eat healthy",
+      "follow up"
+    ],
+    "medications": [
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Platelet transfusions",
+      "Liver transplant"
+    ]
+  },
+  "Hepatitis E": {
+    "description": "Hepatitis E is a viral infection that causes liver inflammation.",
+    "precautions": [
+      "stop alcohol consumption",
+      "rest",
+      "consult doctor",
+      "medication"
+    ],
+    "medications": [
+      "Alcohol cessation",
+      "Corticosteroids",
+      "IV fluids",
+      "Liver transplant",
+      "Nutritional support"
+    ]
+  },
+  "Hypertension": {
+    "description": "Hypertension, or high blood pressure, is a common cardiovascular condition.",
+    "precautions": [
+      "meditation",
+      "salt baths",
+      "reduce stress",
+      "get proper sleep"
+    ],
+    "medications": [
+      "Antihypertensive medications",
+      "Diuretics",
+      "Beta-blockers",
+      "ACE inhibitors",
+      "Calcium channel blockers"
+    ]
+  },
+  "Hyperthyroidism": {
+    "description": "Hyperthyroidism is a condition where the thyroid gland produces too much thyroid hormone.",
+    "precautions": [
+      "eat healthy",
+      "massage",
+      "use lemon balm",
+      "take radioactive iodine treatment"
+    ],
+    "medications": [
+      "Glucose tablets",
+      "Candy or juice",
+      "Glucagon injection",
+      "IV dextrose",
+      "Diazoxide"
+    ]
+  },
+  "Hypoglycemia": {
+    "description": "Hypoglycemia is a condition characterized by abnormally low blood sugar levels.",
+    "precautions": [
+      "lie down on side",
+      "check in pulse",
+      "drink sugary drinks",
+      "consult doctor"
+    ],
+    "medications": [
+      "Pain relievers",
+      "Exercise",
+      "Hot and cold packs",
+      "Joint protection",
+      "Physical therapy"
+    ]
+  },
+  "Hypothyroidism": {
+    "description": "Hypothyroidism is a condition where the thyroid gland doesn't produce enough thyroid hormone.",
+    "precautions": [
+      "reduce stress",
+      "exercise",
+      "eat healthy",
+      "get proper sleep"
+    ],
+    "medications": [
+      "Antithyroid medications",
+      "Radioactive iodine",
+      "Thyroid surgery",
+      "Beta-blockers",
+      "Corticosteroids"
+    ]
+  },
+  "Impetigo": {
+    "description": "Impetigo is a highly contagious skin infection causing red sores that can break open.",
+    "precautions": [
+      "soak affected area in warm water",
+      "use antibiotics",
+      "remove scabs with wet compressed cloth",
+      "consult doctor"
+    ],
+    "medications": [
+      "Topical antibiotics",
+      "Oral antibiotics",
+      "Antiseptics",
+      "Ointments",
+      "Warm compresses"
+    ]
+  },
+  "Jaundice": {
+    "description": "Jaundice is a yellow discoloration of the skin and eyes, often indicating liver problems.",
+    "precautions": [
+      "drink plenty of water",
+      "consume milk thistle",
+      "eat fruits and high fiberous food",
+      "medication"
+    ],
+    "medications": [
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant",
+      "Medications for itching",
+      "Antiviral medications"
+    ]
+  },
+  "Malaria": {
+    "description": "Malaria is a mosquito-borne infectious disease affecting humans and other animals.",
+    "precautions": [
+      "Consult nearest hospital",
+      "avoid oily food",
+      "avoid non veg food",
+      "keep mosquitos out"
+    ],
+    "medications": [
+      "Antimalarial drugs",
+      "Antipyretics",
+      "Antiemetic drugs",
+      "IV fluids",
+      "Blood transfusions"
+    ]
+  },
+  "Migraine": {
+    "description": "Migraine is a type of headache that often involves severe pain and sensitivity to light and sound.",
+    "precautions": [
+      "meditation",
+      "reduce stress",
+      "use poloroid glasses in sun",
+      "consult doctor"
+    ],
+    "medications": [
+      "Analgesics",
+      "Triptans",
+      "Ergotamine derivatives",
+      "Preventive medications",
+      "Biofeedback"
+    ]
+  },
+  "Osteoarthristis": {
+    "description": "Osteoarthristis is a degenerative joint disease that affects the cartilage in joints.",
+    "precautions": [
+      "acetaminophen",
+      "consult nearest hospital",
+      "follow up",
+      "salt baths"
+    ],
+    "medications": [
+      "NSAIDs",
+      "Disease-modifying antirheumatic drugs (DMARDs)",
+      "Biologics",
+      "Corticosteroids",
+      "Joint replacement surgery"
+    ]
+  },
+  "Paralysis (brain hemorrhage)": {
+    "description": "Paralysis (brain hemorrhage) refers to the loss of muscle function due to bleeding in the brain.",
+    "precautions": [
+      "massage",
+      "eat healthy",
+      "exercise",
+      "consult doctor"
+    ],
+    "medications": [
+      "Blood thinners",
+      "Clot-dissolving medications",
+      "Anticonvulsants",
+      "Physical therapy",
+      "Occupational therapy"
+    ]
+  },
+  "Peptic ulcer disease": {
+    "description": "Peptic ulcer disease involves sores that develop on the inner lining of the stomach and small intestine.",
+    "precautions": [
+      "avoid fatty spicy food",
+      "consume probiotic food",
+      "eliminate milk",
+      "limit alcohol"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Proton Pump Inhibitors (PPIs)",
+      "H2 Blockers",
+      "Antacids",
+      "Cytoprotective agents"
+    ]
+  },
+  "Pneumonia": {
+    "description": "Pneumonia is an inflammatory condition affecting the air sacs in the lungs.",
+    "precautions": [
+      "consult doctor",
+      "medication",
+      "rest",
+      "follow up"
+    ],
+    "medications": [
+      "Laxatives",
+      "Pain relievers",
+      "Warm baths",
+      "Cold compresses",
+      "High-fiber diet"
+    ]
+  },
+  "Psoriasis": {
+    "description": "Psoriasis is a chronic skin condition characterized by red, itchy, and scaly patches.",
+    "precautions": [
+      "wash hands with warm soapy water",
+      "stop bleeding using pressure",
+      "consult doctor",
+      "salt baths"
+    ],
+    "medications": [
+      "Topical treatments",
+      "Phototherapy",
+      "Systemic medications",
+      "Biologics",
+      "Coal tar"
+    ]
+  },
+  "Tuberculosis": {
+    "description": "Tuberculosis is a bacterial infection that primarily affects the lungs.",
+    "precautions": [
+      "cover mouth",
+      "consult doctor",
+      "medication",
+      "rest"
+    ],
+    "medications": [
+      "Antipyretics",
+      "Decongestants",
+      "Cough suppressants",
+      "Antihistamines",
+      "Pain relievers"
+    ]
+  },
+  "Typhoid": {
+    "description": "Typhoid is a bacterial infection that can lead to a high fever and gastrointestinal symptoms.",
+    "precautions": [
+      "eat high calorie vegitables",
+      "antiboitic therapy",
+      "consult doctor",
+      "medication"
+    ],
+    "medications": [
+      "Vaccination",
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant"
+    ]
+  },
+  "Urinary tract infection": {
+    "description": "Urinary tract infection is an infection in any part of the urinary system.",
+    "precautions": [
+      "drink plenty of water",
+      "increase vitamin c intake",
+      "drink cranberry juice",
+      "take probiotics"
+    ],
+    "medications": [
+      "Antibiotics",
+      "Urinary analgesics",
+      "Phenazopyridine",
+      "Antispasmodics",
+      "Probiotics"
+    ]
+  },
+  "Varicose veins": {
+    "description": "Varicose veins are enlarged, twisted veins that usually appear on the legs.",
+    "precautions": [
+      "lie down flat and raise the leg high",
+      "use oinments",
+      "use vein compression",
+      "dont stand still for long"
+    ],
+    "medications": [
+      "Levothyroxine",
+      "Antithyroid medications",
+      "Beta-blockers",
+      "Radioactive iodine",
+      "Thyroid surgery"
+    ]
+  },
+  "hepatitis A": {
+    "description": "hepatitis A is a viral liver disease.",
+    "precautions": [
+      "Consult nearest hospital",
+      "wash hands through",
+      "avoid fatty spicy food",
+      "medication"
+    ],
+    "medications": [
+      "Vaccination",
+      "Antiviral drugs",
+      "IV fluids",
+      "Blood transfusions",
+      "Liver transplant"
+    ]
+  }
+}

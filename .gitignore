@@ -4,3 +4,4 @@ obj/
 .idea/
 publish/
 HospitalManagementSystem.API/Uploads/
+HospitalManagementSystem.API/MLModels/*.onnx

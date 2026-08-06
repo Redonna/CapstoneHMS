@@ -20,16 +20,16 @@
     .sidebar-brand h5 { color: #fff; font-weight: 700; margin: 0; font-size: 1rem; }
     .sidebar-brand small { color: rgba(255,255,255,0.6); font-size: 0.75rem; }
     .sidebar-brand i { font-size: 28px; color: #fff; }
-    .nav-item .nav-link {
+    .sidebar .nav-item .nav-link {
       color: rgba(255,255,255,0.75); padding: 12px 20px;
       border-radius: 8px; margin: 2px 10px;
       display: flex; align-items: center; gap: 10px;
       font-weight: 500; transition: all 0.2s;
     }
-    .nav-item .nav-link:hover, .nav-item .nav-link.active {
+    .sidebar .nav-item .nav-link:hover, .sidebar .nav-item .nav-link.active {
       background: rgba(255,255,255,0.15); color: #fff;
     }
-    .nav-item .nav-link i { font-size: 18px; }
+    .sidebar .nav-item .nav-link i { font-size: 18px; }
     .sidebar-footer { margin-top: auto; padding: 16px 20px; border-top: 1px solid rgba(255,255,255,0.15); }
     .sidebar-footer .user-info { color: rgba(255,255,255,0.8); font-size: 0.85rem; }
     .role-badge { background: rgba(255,255,255,0.2); color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; }
@@ -488,22 +488,117 @@
       </div>
       <div class="modal-body">
         <input type="hidden" id="historyPatientId"/>
-        <div id="historyReadOnlyNotice" class="alert alert-secondary d-none">
-          <i class="bi bi-lock me-1"></i>Read-only — you can view existing records but cannot add new ones yet.
+        <ul class="nav nav-pills nav-fill mb-3" id="historyTabs">
+          <li class="nav-item"><a class="nav-link active" href="#" data-tab="general" onclick="showHistoryTab('general', this); return false;">General</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-tab="vitals" onclick="showHistoryTab('vitals', this); return false;">Vital Signs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-tab="ai" onclick="showHistoryTab('ai', this); return false;"><i class="bi bi-magic me-1"></i>AI Assistance</a></li>
+        </ul>
+
+        <!-- GENERAL TAB -->
+        <div id="historyTabGeneral">
+          <div id="historyReadOnlyNotice" class="alert alert-secondary d-none">
+            <i class="bi bi-lock me-1"></i>Read-only — you can view existing records but cannot add new ones yet.
+          </div>
+          <div id="docSummarySection" class="mb-3 d-none">
+            <button class="btn btn-outline-primary btn-sm" id="docSummaryBtn" onclick="summarizeHistoryDocument()">
+              <i class="bi bi-file-earmark-text me-1"></i>Summarize Medical History Document
+            </button>
+            <div id="docSummaryBullets" class="mt-2"></div>
+          </div>
+          <div id="historyList" class="mb-3">Loading...</div>
+          <div id="historyAddSection">
+            <hr/>
+            <h6 class="fw-bold" style="color:var(--primary);">Add Entry</h6>
+            <div class="row g-2">
+              <div class="col-12"><input type="text" class="form-control form-control-sm" id="historyTitle" placeholder="Title (e.g. Diagnosis: Hypertension)"/></div>
+              <div class="col-12"><textarea class="form-control form-control-sm" id="historyDetails" rows="2" placeholder="Details"></textarea></div>
+              <div class="col-6"><input type="date" class="form-control form-control-sm" id="historyDate"/></div>
+              <div class="col-6"><input type="file" class="form-control form-control-sm" id="historyFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"/></div>
+              <div class="col-12"><button class="btn btn-primary btn-sm w-100" onclick="saveHistoryEntry()"><i class="bi bi-plus-lg me-1"></i>Add Entry</button></div>
+            </div>
+          </div>
+          <div class="alert alert-danger mt-2 d-none" id="historyError"></div>
         </div>
-        <div id="historyList" class="mb-3">Loading...</div>
-        <div id="historyAddSection">
-          <hr/>
-          <h6 class="fw-bold" style="color:var(--primary);">Add Entry</h6>
-          <div class="row g-2">
-            <div class="col-12"><input type="text" class="form-control form-control-sm" id="historyTitle" placeholder="Title (e.g. Diagnosis: Hypertension)"/></div>
-            <div class="col-12"><textarea class="form-control form-control-sm" id="historyDetails" rows="2" placeholder="Details"></textarea></div>
-            <div class="col-6"><input type="date" class="form-control form-control-sm" id="historyDate"/></div>
-            <div class="col-6"><input type="file" class="form-control form-control-sm" id="historyFile" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"/></div>
-            <div class="col-12"><button class="btn btn-primary btn-sm w-100" onclick="saveHistoryEntry()"><i class="bi bi-plus-lg me-1"></i>Add Entry</button></div>
+
+        <!-- VITAL SIGNS TAB -->
+        <div id="historyTabVitals" class="hidden">
+          <div id="vitalsReadOnlyNotice" class="alert alert-secondary d-none">
+            <i class="bi bi-lock me-1"></i>Read-only — you can view charts but cannot add new vitals yet.
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <canvas id="chartBloodPressure" height="160"></canvas>
+              <div id="chartBloodPressureEmpty" class="text-muted text-center small d-none py-4">No data for Blood Pressure</div>
+            </div>
+            <div class="col-md-6">
+              <canvas id="chartHeartRate" height="160"></canvas>
+              <div id="chartHeartRateEmpty" class="text-muted text-center small d-none py-4">No data for Heart Rate</div>
+            </div>
+            <div class="col-md-6">
+              <canvas id="chartTemperature" height="160"></canvas>
+              <div id="chartTemperatureEmpty" class="text-muted text-center small d-none py-4">No data for Temperature</div>
+            </div>
+            <div class="col-md-6">
+              <canvas id="chartWeight" height="160"></canvas>
+              <div id="chartWeightEmpty" class="text-muted text-center small d-none py-4">No data for Weight</div>
+            </div>
+          </div>
+          <div id="vitalsAddSection">
+            <hr/>
+            <h6 class="fw-bold" style="color:var(--primary);">Add Vitals</h6>
+            <div class="row g-2">
+              <div class="col-6"><label class="form-label small mb-0">Systolic (mmHg)</label><input type="number" class="form-control form-control-sm" id="vitalsSystolic"/></div>
+              <div class="col-6"><label class="form-label small mb-0">Diastolic (mmHg)</label><input type="number" class="form-control form-control-sm" id="vitalsDiastolic"/></div>
+              <div class="col-6"><label class="form-label small mb-0">Heart Rate (bpm)</label><input type="number" class="form-control form-control-sm" id="vitalsHeartRate"/></div>
+              <div class="col-6"><label class="form-label small mb-0">Temperature (°C)</label><input type="number" step="0.1" class="form-control form-control-sm" id="vitalsTemperature"/></div>
+              <div class="col-6"><label class="form-label small mb-0">Weight (kg)</label><input type="number" step="0.1" class="form-control form-control-sm" id="vitalsWeight"/></div>
+              <div class="col-6"><label class="form-label small mb-0">Date</label><input type="date" class="form-control form-control-sm" id="vitalsDate"/></div>
+              <div class="col-12"><button class="btn btn-primary btn-sm w-100" onclick="saveVitalsEntry()"><i class="bi bi-plus-lg me-1"></i>Add Vitals</button></div>
+            </div>
+          </div>
+          <div class="alert alert-danger mt-2 d-none" id="vitalsError"></div>
+        </div>
+
+        <!-- AI SUMMARY TAB -->
+        <div id="historyTabAI" class="hidden">
+          <label class="form-label small text-muted">Describe the patient's reported symptoms</label>
+          <textarea class="form-control form-control-sm mb-2" id="symptomInputText" rows="3" placeholder="e.g. patient reports itching, skin rash, and nodal skin eruptions for the past week"></textarea>
+          <button class="btn btn-primary btn-sm w-100" id="generateSummaryBtn" onclick="generateSummary()">
+            <i class="bi bi-magic me-1"></i>Assist Me
+          </button>
+          <div class="alert alert-danger mt-2 d-none" id="summarizeError"></div>
+
+          <div id="summarizeResults" class="d-none mt-3">
+            <hr/>
+            <div class="mb-2">
+              <span class="small text-muted">Symptoms you're describing now:</span><br/>
+              <div id="summaryCurrentSymptoms"></div>
+            </div>
+            <div class="mb-2 d-none" id="summaryPastSymptomsSection">
+              <span class="small text-muted">From patient's past medical history:</span><br/>
+              <div id="summaryPastSymptoms"></div>
+            </div>
+            <p class="small fst-italic mb-2" id="summaryLeadIn"></p>
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <h5 class="mb-0" id="summaryDisease" style="color:var(--primary);"></h5>
+              <span class="badge" id="summaryConfidence"></span>
+            </div>
+            <p class="mb-2" id="summaryDescription"></p>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <h6 class="fw-bold small" style="color:var(--primary);">Suggested Precautions</h6>
+                <ul class="small mb-0" id="summaryPrecautions"></ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="fw-bold small" style="color:var(--primary);">Suggested Medications</h6>
+                <ul class="small mb-0" id="summaryMedications"></ul>
+              </div>
+            </div>
+            <div class="alert alert-warning mt-3 mb-0 py-2 small">
+              <i class="bi bi-exclamation-triangle me-1"></i>AI-assisted suggestion only, not a diagnosis. Always use clinical judgment.
+            </div>
           </div>
         </div>
-        <div class="alert alert-danger mt-2 d-none" id="historyError"></div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -529,6 +624,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
   const API = window.location.hostname === 'localhost' ? 'https://localhost:56075/api' : `${window.location.origin}/api`;
   const token = localStorage.getItem('token');
@@ -847,7 +943,11 @@
   }
 
   // ── MEDICAL HISTORY (Admin, Doctor) ────────────────────────────────────────────
-  async function openHistory(patientId, patientName, editable = true) {
+  let currentHistoryEditable = true;
+  const vitalsCharts = {};
+
+  async function openHistory(patientId, patientName, editable = true, initialTab = 'general') {
+    currentHistoryEditable = editable;
     document.getElementById('historyPatientId').value = patientId;
     document.getElementById('historyModalTitle').textContent = `Medical History — ${patientName}`;
     document.getElementById('historyTitle').value = '';
@@ -857,16 +957,36 @@
     document.getElementById('historyError').classList.add('d-none');
     document.getElementById('historyAddSection').classList.toggle('hidden', !editable);
     document.getElementById('historyReadOnlyNotice').classList.toggle('d-none', editable);
+    document.getElementById('vitalsAddSection').classList.toggle('hidden', !editable);
+    document.getElementById('vitalsReadOnlyNotice').classList.toggle('d-none', editable);
+    ['vitalsSystolic','vitalsDiastolic','vitalsHeartRate','vitalsTemperature','vitalsWeight','vitalsDate'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('vitalsError').classList.add('d-none');
+    document.getElementById('symptomInputText').value = '';
+    document.getElementById('summarizeError').classList.add('d-none');
+    document.getElementById('summarizeResults').classList.add('d-none');
+    showHistoryTab(initialTab, document.querySelector(`#historyTabs .nav-link[data-tab="${initialTab}"]`));
     new bootstrap.Modal(document.getElementById('historyModal')).show();
     await loadHistory(patientId);
   }
 
+  function showHistoryTab(tab, el) {
+    document.querySelectorAll('#historyTabs .nav-link').forEach(l => l.classList.remove('active'));
+    if (el) el.classList.add('active');
+    document.getElementById('historyTabGeneral').classList.toggle('hidden', tab !== 'general');
+    document.getElementById('historyTabVitals').classList.toggle('hidden', tab !== 'vitals');
+    document.getElementById('historyTabAI').classList.toggle('hidden', tab !== 'ai');
+    if (tab === 'vitals') loadVitals(parseInt(document.getElementById('historyPatientId').value));
+  }
+
   async function loadHistory(patientId) {
     const list = document.getElementById('historyList');
+    document.getElementById('docSummaryBullets').innerHTML = '';
     list.innerHTML = '<div class="text-muted text-center py-2">Loading...</div>';
     const res = await api(`/patienthistory/patient/${patientId}`);
     if (!res?.ok) { list.innerHTML = '<div class="text-danger text-center py-2">Failed to load history.</div>'; return; }
     const entries = await res.json();
+    const hasDocx = entries.some(e => e.hasAttachment && /\.docx?$/i.test(e.attachmentFileName || ''));
+    document.getElementById('docSummarySection').classList.toggle('d-none', !hasDocx);
     if (!entries.length) { list.innerHTML = '<div class="text-muted text-center py-2">No history recorded yet.</div>'; return; }
     list.innerHTML = entries.map(e => `
       <div class="border rounded p-2 mb-2">
@@ -882,6 +1002,22 @@
           </button>
         ` : ''}
       </div>`).join('');
+  }
+
+  async function summarizeHistoryDocument() {
+    const patientId = parseInt(document.getElementById('historyPatientId').value);
+    const btn = document.getElementById('docSummaryBtn');
+    const out = document.getElementById('docSummaryBullets');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Summarizing...';
+    const res = await api(`/patienthistory/patient/${patientId}/document-summary`);
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-file-earmark-text me-1"></i>Summarize Medical History Document';
+    if (!res?.ok) { out.innerHTML = '<div class="text-danger small">Failed to summarize document.</div>'; return; }
+    const data = await res.json();
+    out.innerHTML = data.bullets.length
+      ? `<ul class="small mb-0">${data.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
+      : '<div class="text-muted small">No summarizable content found in the document.</div>';
   }
 
   async function uploadFile(url, formData) {
@@ -943,6 +1079,71 @@
       loadHistory(patientId);
     } else {
       err.textContent = (await res?.text()) || 'Failed to save entry.';
+      err.classList.remove('d-none');
+    }
+  }
+
+  // ── VITALS ──────────────────────────────────────────────────────────────────
+  async function loadVitals(patientId) {
+    const res = await api(`/vitals/patient/${patientId}`);
+    const records = res?.ok ? await res.json() : [];
+    renderVitalsCharts(records);
+  }
+
+  function drawVitalsChart(canvasId, emptyId, labels, datasets) {
+    const hasData = datasets.some(d => d.data.some(v => v !== null));
+    document.getElementById(canvasId).classList.toggle('d-none', !hasData);
+    document.getElementById(emptyId).classList.toggle('d-none', hasData);
+    if (vitalsCharts[canvasId]) { vitalsCharts[canvasId].destroy(); delete vitalsCharts[canvasId]; }
+    if (!hasData) return;
+    vitalsCharts[canvasId] = new Chart(document.getElementById(canvasId), {
+      type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: datasets.length > 1 } },
+        scales: { y: { beginAtZero: false } }
+      }
+    });
+  }
+
+  function renderVitalsCharts(records) {
+    const labels = records.map(r => new Date(r.recordDate).toLocaleDateString());
+    drawVitalsChart('chartBloodPressure', 'chartBloodPressureEmpty', labels, [
+      { label: 'Systolic', data: records.map(r => r.bloodPressureSystolic), borderColor: '#dc3545', tension: 0.2 },
+      { label: 'Diastolic', data: records.map(r => r.bloodPressureDiastolic), borderColor: '#0d6efd', tension: 0.2 }
+    ]);
+    drawVitalsChart('chartHeartRate', 'chartHeartRateEmpty', labels, [
+      { label: 'Heart Rate (bpm)', data: records.map(r => r.heartRate), borderColor: '#fd7e14', tension: 0.2 }
+    ]);
+    drawVitalsChart('chartTemperature', 'chartTemperatureEmpty', labels, [
+      { label: 'Temperature (°C)', data: records.map(r => r.temperature), borderColor: '#198754', tension: 0.2 }
+    ]);
+    drawVitalsChart('chartWeight', 'chartWeightEmpty', labels, [
+      { label: 'Weight (kg)', data: records.map(r => r.weight), borderColor: '#6f42c1', tension: 0.2 }
+    ]);
+  }
+
+  async function saveVitalsEntry() {
+    const patientId = parseInt(document.getElementById('historyPatientId').value);
+    const err = document.getElementById('vitalsError');
+    const num = id => { const v = document.getElementById(id).value; return v === '' ? null : parseFloat(v); };
+    const body = {
+      patientId,
+      bloodPressureSystolic: num('vitalsSystolic'),
+      bloodPressureDiastolic: num('vitalsDiastolic'),
+      heartRate: num('vitalsHeartRate'),
+      temperature: num('vitalsTemperature'),
+      weight: num('vitalsWeight'),
+      recordDate: document.getElementById('vitalsDate').value ? document.getElementById('vitalsDate').value + 'T00:00:00' : null
+    };
+    const res = await api('/vitals', { method: 'POST', body: JSON.stringify(body) });
+    if (res?.ok) {
+      ['vitalsSystolic','vitalsDiastolic','vitalsHeartRate','vitalsTemperature','vitalsWeight','vitalsDate'].forEach(id => document.getElementById(id).value = '');
+      err.classList.add('d-none');
+      loadVitals(patientId);
+    } else {
+      err.textContent = (await res?.text()) || 'Failed to save vitals.';
       err.classList.remove('d-none');
     }
   }
@@ -1166,6 +1367,9 @@
         <td>
           <div class="d-flex gap-1">
             <button class="btn btn-sm btn-outline-info" title="View (GET by ID)" onclick='viewAppointment(${JSON.stringify(a)})'><i class="bi bi-eye"></i></button>
+            ${role === 'Doctor' && a.status === 'Scheduled' && a.doctorId === myDoctorId ? `
+              <button class="btn btn-sm btn-outline-primary" title="Medical History" onclick='openHistory(${a.patientId}, ${JSON.stringify(a.patientName)}, true)'><i class="bi bi-journal-medical"></i></button>
+            ` : ''}
             ${role !== 'Patient' && a.status !== 'Cancelled' && a.status !== 'Denied' ? `
               <button class="btn btn-sm btn-outline-warning" title="Update (PUT)" onclick='openEditAppointment(${JSON.stringify(a)})'><i class="bi bi-pencil"></i></button>
             ` : ''}
@@ -1306,6 +1510,75 @@
     const res = await api(`/appointments/${id}/deny`, { method: 'PATCH' });
     if (!res?.ok) alert((await res?.text()) || 'Failed to deny appointment.');
     loadAppointments();
+  }
+
+  // ── AI SYMPTOM SUMMARY ──────────────────────────────────────────────────────
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function confidenceBadgeClass(confidence) {
+    if (confidence >= 70) return 'badge-accepted';
+    if (confidence >= 40) return 'badge-pending';
+    return 'badge-denied';
+  }
+
+  async function generateSummary() {
+    const patientId = parseInt(document.getElementById('historyPatientId').value);
+    const symptomText = document.getElementById('symptomInputText').value.trim();
+    const err = document.getElementById('summarizeError');
+    const results = document.getElementById('summarizeResults');
+    err.classList.add('d-none');
+    results.classList.add('d-none');
+
+    if (!symptomText) {
+      err.textContent = 'Please describe the symptoms first.';
+      err.classList.remove('d-none');
+      return;
+    }
+
+    const btn = document.getElementById('generateSummaryBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Assisting...';
+
+    const res = await api('/symptomsummary', { method: 'POST', body: JSON.stringify({ patientId, symptomText }) });
+
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-magic me-1"></i>Assist Me';
+
+    if (!res?.ok) {
+      err.textContent = (await res?.text()) || 'Failed to generate summary.';
+      err.classList.remove('d-none');
+      return;
+    }
+
+    const data = await res.json();
+    document.getElementById('summaryCurrentSymptoms').innerHTML = data.currentSymptoms.length
+      ? data.currentSymptoms.map(s => `<span class="badge bg-secondary me-1 mb-1">${s}</span>`).join('')
+      : `<span class="text-muted fst-italic">"${escapeHtml(symptomText)}"</span>`;
+    document.getElementById('summaryPastSymptomsSection').classList.toggle('d-none', !data.hasPastHistory);
+    if (data.hasPastHistory) {
+      document.getElementById('summaryPastSymptoms').innerHTML = data.pastSymptoms.length
+        ? data.pastSymptoms.map(s => `<span class="badge bg-info text-dark me-1 mb-1">${s}</span>`).join('')
+        : '<span class="text-muted">None</span>';
+    }
+    document.getElementById('summaryLeadIn').textContent = data.blendedPastHistory
+      ? "Based on the patient's past medical history and the symptoms you're describing now, possible illness:"
+      : "Based on the symptoms you're describing, possible illness:";
+    document.getElementById('summaryDisease').textContent = data.predictedDisease;
+    const confBadge = document.getElementById('summaryConfidence');
+    confBadge.textContent = `${data.confidence}% confidence`;
+    confBadge.className = `badge ${confidenceBadgeClass(data.confidence)}`;
+    document.getElementById('summaryDescription').textContent = data.description || '—';
+    document.getElementById('summaryPrecautions').innerHTML = data.precautions.length
+      ? data.precautions.map(p => `<li>${p}</li>`).join('')
+      : '<li class="text-muted">None listed</li>';
+    document.getElementById('summaryMedications').innerHTML = data.medications.length
+      ? data.medications.map(m => `<li>${m}</li>`).join('')
+      : '<li class="text-muted">None listed</li>';
+    results.classList.remove('d-none');
   }
 
   function toggleProfileForm() {

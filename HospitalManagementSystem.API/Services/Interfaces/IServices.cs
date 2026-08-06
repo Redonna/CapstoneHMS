@@ -57,5 +57,18 @@ namespace HospitalManagementSystem.API.Services.Interfaces
         Task<(PatientHistoryReadDto? result, string? error)> CreateAsync(PatientHistoryCreateDto dto, string creatorRole, string callerUsername);
         Task<(PatientHistoryReadDto? result, string? error)> UploadAttachmentAsync(int entryId, IFormFile file);
         Task<(string? absolutePath, string? fileName, string? error)> GetAttachmentAsync(int entryId);
+        Task<string> GetHistoryDocumentTextAsync(int patientId);
+        Task<(List<string> bullets, bool hasDocument)> GetHistoryDocumentSummaryAsync(int patientId);
+    }
+
+    public interface IVitalsService
+    {
+        Task<IEnumerable<VitalsReadDto>> GetByPatientIdAsync(int patientId);
+        Task<(VitalsReadDto? result, string? error)> CreateAsync(VitalsCreateDto dto, string creatorRole, string callerUsername);
+    }
+
+    public interface ISymptomSummaryService
+    {
+        Task<(SymptomSummaryResponseDto? result, string? error)> SummarizeAsync(SymptomSummaryRequestDto dto, string callerRole, string callerUsername);
     }
 }

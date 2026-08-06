@@ -142,6 +142,59 @@ namespace HospitalManagementSystem.API.DTOs
         public string? AttachmentFileName { get; set; }
     }
 
+    // ── VITALS ────────────────────────────────────────────────────
+    public class VitalsCreateDto
+    {
+        [Required] public int PatientId { get; set; }
+        public DateTime? RecordDate { get; set; }
+        public int? BloodPressureSystolic { get; set; }
+        public int? BloodPressureDiastolic { get; set; }
+        public int? HeartRate { get; set; }
+        public decimal? Temperature { get; set; }
+        public decimal? Weight { get; set; }
+    }
+
+    public class VitalsReadDto
+    {
+        public int Id { get; set; }
+        public int PatientId { get; set; }
+        public int? RecordedByDoctorId { get; set; }
+        public string RecordedByDoctorName { get; set; } = string.Empty;
+        public DateTime RecordDate { get; set; }
+        public int? BloodPressureSystolic { get; set; }
+        public int? BloodPressureDiastolic { get; set; }
+        public int? HeartRate { get; set; }
+        public decimal? Temperature { get; set; }
+        public decimal? Weight { get; set; }
+        public DateTime CreatedAt { get; set; }
+    }
+
+    // ── SYMPTOM SUMMARY (AI) ─────────────────────────────────────
+    public class SymptomSummaryRequestDto
+    {
+        [Required] public int PatientId { get; set; }
+        [Required, MaxLength(2000)] public string SymptomText { get; set; } = string.Empty;
+    }
+
+    public class SymptomSummaryResponseDto
+    {
+        public List<string> CurrentSymptoms { get; set; } = new();
+        public List<string> PastSymptoms { get; set; } = new();
+        public bool HasPastHistory { get; set; }
+        public bool BlendedPastHistory { get; set; }
+        public string PredictedDisease { get; set; } = string.Empty;
+        public double Confidence { get; set; }
+        public string Description { get; set; } = string.Empty;
+        public List<string> Precautions { get; set; } = new();
+        public List<string> Medications { get; set; } = new();
+    }
+
+    public class HistoryDocumentSummaryResponseDto
+    {
+        public bool HasDocument { get; set; }
+        public List<string> Bullets { get; set; } = new();
+    }
+
     // ── AUTH ──────────────────────────────────────────────────
     public class RegisterDto
     {

@@ -26,6 +26,7 @@ builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAssignmentRepository, AssignmentRepository>();
 builder.Services.AddScoped<IPatientHistoryRepository, PatientHistoryRepository>();
+builder.Services.AddScoped<IVitalsRepository, VitalsRepository>();
 
 // ── Services (Scoped) ─────────────────────────────────────────────────────────
 builder.Services.AddScoped<IPatientService, PatientService>();
@@ -34,6 +35,11 @@ builder.Services.AddScoped<IAppointmentService, AppointmentService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 builder.Services.AddScoped<IPatientHistoryService, PatientHistoryService>();
+builder.Services.AddScoped<IVitalsService, VitalsService>();
+builder.Services.AddScoped<ISymptomSummaryService, SymptomSummaryService>();
+
+// ── ML model (Singleton = loaded once, thread-safe for inference) ─────────────
+builder.Services.AddSingleton<SymptomModelStore>();
 
 // ── JWT Authentication ────────────────────────────────────────────────────────
 var jwtKey = builder.Configuration["Jwt:Key"]!;

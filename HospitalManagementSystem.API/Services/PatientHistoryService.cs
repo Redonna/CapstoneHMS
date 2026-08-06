@@ -100,5 +100,40 @@ namespace HospitalManagementSystem.API.Services
 
             return (fullPath, entry.AttachmentFileName, null);
         }
+
+        public async Task<string> GetHistoryDocumentTextAsync(int patientId)
+        {
+            var (paragraphs, _) = await CollectDocumentParagraphsAsync(patientId);
+            return string.Join("\n", paragraphs);
+        }
+
+        public async Task<(List<string> bullets, bool hasDocument)> GetHistoryDocumentSummaryAsync(int patientId)
+        {
+            var (paragraphs, hasDocument) = await CollectDocumentParagraphsAsync(patientId);
+            if (!hasDocument) return (new List<string>(), false);
+            return (MedicalHistorySummarizer.SummarizeToBullets(paragraphs), true);
+        }
+
+        private async Task<(List<string> paragraphs, bool hasDocument)> CollectDocumentParagraphsAsync(int patientId)
+        {
+            var entries = await _historyRepository.GetByPatientIdAsync(patientId);
+            var docEntries = entries
+                .Where(e => !string.IsNullOrEmpty(e.AttachmentStoredPath) &&
+                            e.AttachmentStoredPath!.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                .OrderBy(e => e.RecordDate)
+                .ToList();
+
+            var hasDocument = docEntries.Count > 0;
+
+            var paragraphs = new List<string>();
+            foreach (var entry in docEntries)
+            {
+                var fullPath = Path.Combine(UploadsDirectory, entry.AttachmentStoredPath!);
+                if (!File.Exists(fullPath)) continue;
+                paragraphs.AddRange(DocxTextExtractor.ExtractParagraphs(fullPath));
+            }
+
+            return (paragraphs, hasDocument);
+        }
     }
 }

@@ -23,5 +23,8 @@ namespace HospitalManagementSystem.API.Models
         public bool IsActive { get; set; } = true;
 
         public int? ProfileId { get; set; } // Links to Patient.Id or Doctor.Id
+
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiresAt { get; set; }
     }
 }

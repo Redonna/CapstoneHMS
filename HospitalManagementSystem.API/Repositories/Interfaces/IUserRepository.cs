@@ -9,5 +9,8 @@ namespace HospitalManagementSystem.API.Repositories.Interfaces
         Task<User> CreateAsync(User user);
         Task<bool> UsernameExistsAsync(string username);
         Task DeactivateByEmailAsync(string email);
+        Task SetResetTokenAsync(int userId, string token, DateTime expiresAt);
+        Task<User?> GetByResetTokenAsync(string token);
+        Task ResetPasswordAsync(int userId, string newPasswordHash);
     }
 }

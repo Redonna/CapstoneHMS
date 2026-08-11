@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "capstone-api",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--no-build"],
+      "port": 56076,
+      "url": "http://localhost:56076"
+    }
+  ]
+}

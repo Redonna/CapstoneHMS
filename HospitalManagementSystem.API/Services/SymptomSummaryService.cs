@@ -94,17 +94,53 @@ namespace HospitalManagementSystem.API.Services
             }, null);
         }
 
+        private static readonly HashSet<string> StopWords = new()
+        {
+            "and", "or", "of", "in", "the", "a", "an", "to", "with", "without",
+            "on", "at", "my", "is", "im", "i'm", "having", "have", "has", "feel", "feeling"
+        };
+
         private (List<string> matched, float[] features) MatchSymptoms(string text)
         {
             var normalizedText = " " + text.ToLowerInvariant() + " ";
-            var matched = new List<string>();
-            var features = new float[_modelStore.SymptomFeatures.Count];
 
-            for (int i = 0; i < _modelStore.SymptomFeatures.Count; i++)
+            var readableSymptoms = _modelStore.SymptomFeatures
+                .Select(f => System.Text.RegularExpressions.Regex.Replace(f.Replace('_', ' ').Trim(), @"\s+", " "))
+                .ToList();
+            var paddedReadables = readableSymptoms.Select(r => " " + r + " ").ToList();
+
+            // Phrases the doctor typed (comma/period separated), plus their individual
+            // words, so a short word like "anxiety" can still stand in for a longer
+            // symptom name like "anxiety and nervousness". Only trusted when the word/
+            // phrase is unique to exactly one symptom in the whole vocabulary - otherwise
+            // a generic word like "pain" or "skin" would match dozens of unrelated
+            // symptoms at once and drown out the real signal.
+            var phrases = System.Text.RegularExpressions.Regex
+                .Split(text.ToLowerInvariant(), @"[,;.\n]+")
+                .Select(p => p.Trim())
+                .Where(p => p.Length > 2)
+                .ToList();
+
+            var words = phrases
+                .SelectMany(p => p.Split(' ', StringSplitOptions.RemoveEmptyEntries))
+                .Where(w => w.Length > 2 && !StopWords.Contains(w));
+
+            var uniqueCandidates = phrases.Concat(words).Distinct()
+                .Where(c => paddedReadables.Count(r => r.Contains(" " + c + " ")) == 1)
+                .ToList();
+
+            var matched = new List<string>();
+            var features = new float[readableSymptoms.Count];
+
+            for (int i = 0; i < readableSymptoms.Count; i++)
             {
-                var readable = _modelStore.SymptomFeatures[i].Replace('_', ' ').Trim();
-                readable = System.Text.RegularExpressions.Regex.Replace(readable, @"\s+", " ");
-                if (normalizedText.Contains(" " + readable + " ") || normalizedText.Contains(readable))
+                var readable = readableSymptoms[i];
+                var paddedReadable = paddedReadables[i];
+
+                var isMatch = normalizedText.Contains(paddedReadable) || normalizedText.Contains(readable)
+                    || uniqueCandidates.Any(c => paddedReadable.Contains(" " + c + " "));
+
+                if (isMatch)
                 {
                     features[i] = 1f;
                     matched.Add(readable);

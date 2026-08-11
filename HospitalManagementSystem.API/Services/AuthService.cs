@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using HospitalManagementSystem.API.DTOs;
 using HospitalManagementSystem.API.Models;
@@ -14,14 +15,16 @@ namespace HospitalManagementSystem.API.Services
         private readonly IUserRepository _userRepository;
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
+        private readonly IEmailService _emailService;
         private readonly IConfiguration _configuration;
 
         public AuthService(IUserRepository userRepository, IPatientRepository patientRepository,
-            IDoctorRepository doctorRepository, IConfiguration configuration)
+            IDoctorRepository doctorRepository, IEmailService emailService, IConfiguration configuration)
         {
             _userRepository = userRepository;
             _patientRepository = patientRepository;
             _doctorRepository = doctorRepository;
+            _emailService = emailService;
             _configuration = configuration;
         }
 
@@ -82,6 +85,38 @@ namespace HospitalManagementSystem.API.Services
 
             var created = await _userRepository.CreateAsync(user);
             return (GenerateToken(created), null);
+        }
+
+        public async Task ForgotPasswordAsync(ForgotPasswordDto dto)
+        {
+            var user = await _userRepository.GetByUsernameAsync(dto.Username);
+            if (user != null && !string.IsNullOrWhiteSpace(user.Email))
+            {
+                var token = Convert.ToHexString(RandomNumberGenerator.GetBytes(32));
+                var expiresAt = DateTime.UtcNow.AddHours(1);
+                await _userRepository.SetResetTokenAsync(user.Id, token, expiresAt);
+
+                var baseUrl = _configuration["AppBaseUrl"] ?? "http://localhost:56076";
+                var resetLink = $"{baseUrl}/reset-password.html?token={token}";
+                var body = $"Hello {user.Username},\n\n" +
+                    "We received a request to reset your password. Click the link below to choose a new one:\n" +
+                    $"{resetLink}\n\n" +
+                    "This link expires in 1 hour. If you didn't request this, you can safely ignore this email.";
+
+                await _emailService.SendAsync(user.Email, user.Username, "Reset your password", body);
+            }
+            // No branch on whether the user/email was found - the caller always sees the
+            // same generic response, so this endpoint can't be used to enumerate usernames.
+        }
+
+        public async Task<(bool success, string? error)> ResetPasswordAsync(ResetPasswordDto dto)
+        {
+            var user = await _userRepository.GetByResetTokenAsync(dto.Token);
+            if (user == null || user.ResetTokenExpiresAt == null || user.ResetTokenExpiresAt < DateTime.UtcNow)
+                return (false, "This reset link is invalid or has expired.");
+
+            await _userRepository.ResetPasswordAsync(user.Id, BCrypt.Net.BCrypt.HashPassword(dto.NewPassword));
+            return (true, null);
         }
 
         private AuthResponseDto GenerateToken(User user)

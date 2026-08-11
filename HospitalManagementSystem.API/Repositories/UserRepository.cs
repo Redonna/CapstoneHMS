@@ -50,5 +50,30 @@ namespace HospitalManagementSystem.API.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task SetResetTokenAsync(int userId, string token, DateTime expiresAt)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null) return;
+            user.ResetToken = token;
+            user.ResetTokenExpiresAt = expiresAt;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<User?> GetByResetTokenAsync(string token)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(u => u.ResetToken == token && u.IsActive);
+        }
+
+        public async Task ResetPasswordAsync(int userId, string newPasswordHash)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null) return;
+            user.PasswordHash = newPasswordHash;
+            user.ResetToken = null;
+            user.ResetTokenExpiresAt = null;
+            await _context.SaveChangesAsync();
+        }
     }
 }

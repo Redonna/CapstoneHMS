@@ -37,6 +37,8 @@ namespace HospitalManagementSystem.API.Services.Interfaces
     {
         Task<(AuthResponseDto? result, string? error)> LoginAsync(LoginDto dto);
         Task<(AuthResponseDto? result, string? error)> RegisterAsync(RegisterDto dto);
+        Task ForgotPasswordAsync(ForgotPasswordDto dto);
+        Task<(bool success, string? error)> ResetPasswordAsync(ResetPasswordDto dto);
     }
 
     public interface IAssignmentService
@@ -70,5 +72,10 @@ namespace HospitalManagementSystem.API.Services.Interfaces
     public interface ISymptomSummaryService
     {
         Task<(SymptomSummaryResponseDto? result, string? error)> SummarizeAsync(SymptomSummaryRequestDto dto, string callerRole, string callerUsername);
+    }
+
+    public interface IEmailService
+    {
+        Task SendAsync(string toAddress, string toName, string subject, string body);
     }
 }

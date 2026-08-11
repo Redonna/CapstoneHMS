@@ -37,6 +37,8 @@ builder.Services.AddScoped<IAssignmentService, AssignmentService>();
 builder.Services.AddScoped<IPatientHistoryService, PatientHistoryService>();
 builder.Services.AddScoped<IVitalsService, VitalsService>();
 builder.Services.AddScoped<ISymptomSummaryService, SymptomSummaryService>();
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
+builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection("Email"));
 
 // ── ML model (Singleton = loaded once, thread-safe for inference) ─────────────
 builder.Services.AddSingleton<SymptomModelStore>();
@@ -78,7 +80,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Hospital Management System API",
         Version = "v1",
-        Description = "SOA Final Project - Redona Rasimi | SEEU 2026"
+        Description = "Capstone Project - Redona Rasimi | SEEU 2026"
     });
 
     // Add JWT Bearer button to Swagger UI

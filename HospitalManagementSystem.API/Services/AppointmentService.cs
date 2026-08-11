@@ -12,6 +12,7 @@ namespace HospitalManagementSystem.API.Services
         private readonly IPatientRepository _patientRepository;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IEmailService _emailService;
         private readonly IMapper _mapper;
 
         public AppointmentService(
@@ -19,12 +20,14 @@ namespace HospitalManagementSystem.API.Services
             IPatientRepository patientRepository,
             IDoctorRepository doctorRepository,
             IUserRepository userRepository,
+            IEmailService emailService,
             IMapper mapper)
         {
             _appointmentRepository = appointmentRepository;
             _patientRepository = patientRepository;
             _doctorRepository = doctorRepository;
             _userRepository = userRepository;
+            _emailService = emailService;
             _mapper = mapper;
         }
 
@@ -82,6 +85,9 @@ namespace HospitalManagementSystem.API.Services
             appointment.Status = creatorRole == "Admin" ? AppointmentStatus.Pending : AppointmentStatus.Scheduled;
             var created = await _appointmentRepository.CreateAsync(appointment);
 
+            if (created.Status == AppointmentStatus.Pending)
+                await NotifyDoctorOfNewAppointmentAsync(created);
+
             // Reload with navigation properties for mapping
             var full = await _appointmentRepository.GetByIdAsync(created.Id);
             return (_mapper.Map<AppointmentReadDto>(full), null);
@@ -134,6 +140,7 @@ namespace HospitalManagementSystem.API.Services
 
             appointment.Status = AppointmentStatus.Scheduled;
             var updated = await _appointmentRepository.UpdateAsync(id, appointment);
+            await NotifyPatientOfStatusChangeAsync(appointment, accepted: true);
             return (_mapper.Map<AppointmentReadDto>(updated), null);
         }
 
@@ -150,6 +157,7 @@ namespace HospitalManagementSystem.API.Services
 
             appointment.Status = AppointmentStatus.Denied;
             var updated = await _appointmentRepository.UpdateAsync(id, appointment);
+            await NotifyPatientOfStatusChangeAsync(appointment, accepted: false);
             return (_mapper.Map<AppointmentReadDto>(updated), null);
         }
 
@@ -157,6 +165,37 @@ namespace HospitalManagementSystem.API.Services
         {
             var user = await _userRepository.GetByUsernameAsync(callerUsername);
             return user?.ProfileId == doctorId;
+        }
+
+        private async Task NotifyDoctorOfNewAppointmentAsync(Appointment appointment)
+        {
+            var doctor = await _doctorRepository.GetByIdAsync(appointment.DoctorId);
+            var patient = await _patientRepository.GetByIdAsync(appointment.PatientId);
+            if (doctor == null || patient == null) return;
+
+            var subject = "New appointment request";
+            var body = $"Hello Dr. {doctor.LastName},\n\n" +
+                $"A new appointment has been requested for you:\n" +
+                $"Patient: {patient.FirstName} {patient.LastName}\n" +
+                $"Date: {appointment.AppointmentDate:f}\n" +
+                $"Reason: {appointment.Reason}\n\n" +
+                "Please log in to accept or deny this appointment.";
+
+            await _emailService.SendAsync(doctor.Email, $"{doctor.FirstName} {doctor.LastName}", subject, body);
+        }
+
+        private async Task NotifyPatientOfStatusChangeAsync(Appointment appointment, bool accepted)
+        {
+            var doctor = await _doctorRepository.GetByIdAsync(appointment.DoctorId);
+            var patient = await _patientRepository.GetByIdAsync(appointment.PatientId);
+            if (doctor == null || patient == null) return;
+
+            var subject = accepted ? "Your appointment has been confirmed" : "Your appointment request was not accepted";
+            var body = accepted
+                ? $"Hello {patient.FirstName},\n\nYour appointment with Dr. {doctor.LastName} on {appointment.AppointmentDate:f} has been confirmed."
+                : $"Hello {patient.FirstName},\n\nUnfortunately, your appointment request with Dr. {doctor.LastName} on {appointment.AppointmentDate:f} was not accepted. Please contact the clinic to reschedule.";
+
+            await _emailService.SendAsync(patient.Email, $"{patient.FirstName} {patient.LastName}", subject, body);
         }
     }
 }

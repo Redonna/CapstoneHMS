@@ -37,5 +37,26 @@ namespace HospitalManagementSystem.API.Controllers
             if (error != null) return BadRequest(error);
             return Ok(result);
         }
+
+        /// <summary>Request a password reset email</summary>
+        [HttpPost("forgot-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            await _authService.ForgotPasswordAsync(dto);
+            return Ok(new { message = "If an account with that username exists and has an email on file, a reset link has been sent." });
+        }
+
+        /// <summary>Reset a password using a token from the reset email</summary>
+        [HttpPost("reset-password")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var (success, error) = await _authService.ResetPasswordAsync(dto);
+            if (!success) return BadRequest(error);
+            return Ok(new { message = "Your password has been reset. You can now log in." });
+        }
     }
 }

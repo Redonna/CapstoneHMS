@@ -1,656 +1,1357 @@
 {
-  "(vertigo) Paroymsal Positional Vertigo": {
-    "description": "(Vertigo) Paroxysmal Positional Vertigo is a type of dizziness caused by specific head movements.",
-    "precautions": [
-      "lie down",
-      "avoid sudden change in body",
-      "avoid abrupt head movment",
-      "relax"
+  "actinic keratosis": {
+    "Description": "Actinic keratosis is a rough, scaly patch on the skin caused by prolonged sun exposure, and is considered a precancerous condition that can develop into squamous cell carcinoma.",
+    "Precautions": [
+      "Avoid sun exposure",
+      "Use broad-spectrum sunscreen",
+      "Wear protective clothing",
+      "See dermatologist regularly"
     ],
-    "medications": [
-      "Topical treatments",
-      "Antibiotics",
-      "Oral medications",
-      "Hormonal treatments",
-      "Isotretinoin"
+    "Medications": [
+      "Topical 5-fluorouracil",
+      "Imiquimod cream",
+      "Diclofenac gel",
+      "Cryotherapy",
+      "Photodynamic therapy"
     ]
   },
-  "AIDS": {
-    "description": "AIDS (Acquired Immunodeficiency Syndrome) is a disease caused by HIV that weakens the immune system.",
-    "precautions": [
-      "avoid open cuts",
-      "wear ppe if possible",
-      "consult doctor",
-      "follow up"
+  "acute bronchiolitis": {
+    "Description": "Acute bronchiolitis is a common lower respiratory tract infection in infants, usually caused by RSV, leading to wheezing, coughing, and difficulty breathing.",
+    "Precautions": [
+      "Keep child hydrated",
+      "Use humidifier",
+      "Avoid exposure to smoke",
+      "Monitor breathing"
     ],
-    "medications": [
-      "Antiretroviral drugs",
-      "Protease inhibitors",
-      "Integrase inhibitors",
-      "Entry inhibitors",
-      "Fusion inhibitors"
+    "Medications": [
+      "Supportive care",
+      "Nasal suctioning",
+      "Saline nebulization",
+      "Oxygen therapy (if hypoxic)",
+      "Antipyretics (e.g., Paracetamol)"
     ]
   },
-  "Acne": {
-    "description": "Acne is a skin condition that occurs when hair follicles become clogged with oil and dead skin cells.",
-    "precautions": [
-      "bath twice",
-      "avoid fatty spicy food",
-      "drink plenty of water",
-      "avoid too many products"
+  "acute bronchitis": {
+    "Description": "Acute bronchitis is inflammation of the bronchial tubes in the lungs, typically caused by a viral infection, resulting in cough, mucus production, chest discomfort, and low-grade fever.",
+    "Precautions": [
+      "Avoid smoking",
+      "Drink warm fluids",
+      "Use cough suppressants if needed",
+      "Rest and recover"
     ],
-    "medications": [
-      "Antibiotics",
-      "Pain relievers",
-      "Antihistamines",
-      "Corticosteroids",
-      "Topical treatments"
+    "Medications": [
+      "Cough suppressants (e.g., Dextromethorphan)",
+      "Expectorants (e.g., Guaifenesin)",
+      "Bronchodilators (if wheezing)",
+      "NSAIDs",
+      "Antibiotics (only if bacterial suspected)"
     ]
   },
-  "Alcoholic hepatitis": {
-    "description": "Alcoholic hepatitis is inflammation of the liver due to alcohol consumption.",
-    "precautions": [
-      "stop alcohol consumption",
-      "consult doctor",
-      "medication",
-      "follow up"
+  "acute bronchospasm": {
+    "Description": "Acute bronchospasm is a sudden constriction of the muscles in the walls of the bronchioles, often triggered by asthma or allergens, causing wheezing and difficulty breathing.",
+    "Precautions": [
+      "Avoid cold air",
+      "Use bronchodilator inhaler",
+      "Avoid allergens",
+      "Monitor breathing patterns"
     ],
-    "medications": [
-      "Antibiotics",
-      "Isoniazid",
-      "Rifampin",
-      "Ethambutol",
-      "Pyrazinamide"
+    "Medications": [
+      "Short-acting beta-agonists (e.g., Albuterol)",
+      "Anticholinergics",
+      "Systemic corticosteroids",
+      "Oxygen therapy",
+      "Magnesium sulfate (in severe cases)"
     ]
   },
-  "Allergy": {
-    "description": "Allergy is an immune system reaction to a substance in the environment.",
-    "precautions": [
-      "apply calamine",
-      "cover area with bandage",
-      "use ice to compress itching"
+  "acute kidney injury": {
+    "Description": "Acute kidney injury (AKI) is a sudden loss of kidney function due to illness, injury, or toxins, leading to buildup of waste products in the blood.",
+    "Precautions": [
+      "Avoid NSAIDs",
+      "Stay hydrated",
+      "Monitor fluid intake",
+      "Follow renal diet plan"
     ],
-    "medications": [
-      "Antihistamines",
-      "Decongestants",
-      "Epinephrine",
-      "Corticosteroids",
-      "Immunotherapy"
-    ]
-  },
-  "Arthritis": {
-    "description": "Arthritis is inflammation of one or more joints, causing pain and stiffness.",
-    "precautions": [
-      "exercise",
-      "use hot and cold therapy",
-      "try acupuncture",
-      "massage"
-    ],
-    "medications": [
-      "Vestibular rehabilitation",
-      "Canalith repositioning",
-      "Medications for nausea",
-      "Surgery",
-      "Home exercises"
-    ]
-  },
-  "Bronchial Asthma": {
-    "description": "Bronchial Asthma is a respiratory condition characterized by inflammation of the airways.",
-    "precautions": [
-      "switch to loose cloothing",
-      "take deep breaths",
-      "get away from trigger",
-      "seek help"
-    ],
-    "medications": [
-      "Bronchodilators",
-      "Inhaled corticosteroids",
-      "Leukotriene modifiers",
-      "Mast cell stabilizers",
-      "Anticholinergics"
-    ]
-  },
-  "Cervical spondylosis": {
-    "description": "Cervical spondylosis is a degenerative condition of the cervical spine.",
-    "precautions": [
-      "use heating pad or cold pack",
-      "exercise",
-      "take otc pain reliver",
-      "consult doctor"
-    ],
-    "medications": [
-      "Pain relievers",
-      "Muscle relaxants",
-      "Physical therapy",
-      "Neck braces",
-      "Corticosteroids"
-    ]
-  },
-  "Chicken pox": {
-    "description": "Chicken pox is a highly contagious viral infection causing an itchy rash.",
-    "precautions": [
-      "use neem in bathing ",
-      "consume neem leaves",
-      "take vaccine",
-      "avoid public places"
-    ],
-    "medications": [
-      "Antiviral drugs",
-      "Pain relievers",
+    "Medications": [
       "IV fluids",
-      "Blood transfusions",
-      "Platelet transfusions"
+      "Diuretics (e.g., Furosemide)",
+      "Electrolyte management",
+      "Discontinue nephrotoxic drugs",
+      "Dialysis (if severe)"
     ]
   },
-  "Chronic cholestasis": {
-    "description": "Chronic cholestasis is a condition where bile flow from the liver is reduced for a prolonged period.",
-    "precautions": [
-      "cold baths",
-      "anti itch medicine",
-      "consult doctor",
-      "eat healthy"
+  "acute pancreatitis": {
+    "Description": "Acute pancreatitis is a sudden inflammation of the pancreas that causes severe abdominal pain, nausea, vomiting, and elevated pancreatic enzymes, often due to gallstones or alcohol use.",
+    "Precautions": [
+      "Avoid alcohol",
+      "Eat a low-fat diet",
+      "Stay hydrated",
+      "Follow doctor's advice strictly"
     ],
-    "medications": [
-      "Ursodeoxycholic acid",
-      "Cholestyramine",
-      "Methotrexate",
+    "Medications": [
+      "IV fluids",
+      "Pain relievers (e.g., Morphine)",
+      "Antibiotics (if infection)",
+      "Enzyme replacement therapy",
+      "Fasting/NPO"
+    ]
+  },
+  "acute sinusitis": {
+    "Description": "Acute sinusitis is a temporary inflammation or infection of the sinuses, usually following a cold, causing nasal congestion, facial pain, pressure, and headache.",
+    "Precautions": [
+      "Use nasal saline spray",
+      "Stay hydrated",
+      "Avoid allergens",
+      "Use warm compresses"
+    ],
+    "Medications": [
+      "Saline nasal spray",
+      "Decongestants (e.g., Pseudoephedrine)",
+      "Nasal corticosteroids",
+      "Antibiotics (if bacterial)",
+      "Acetaminophen for pain"
+    ]
+  },
+  "allergy": {
+    "Description": "An allergy is an overreaction of the immune system to substances like pollen, food, or medications, causing symptoms like sneezing, itching, rash, or anaphylaxis.",
+    "Precautions": [
+      "Apply calamine",
+      "Cover area with bandage",
+      "Use ice to compress itching",
+      "Avoid known allergens"
+    ],
+    "Medications": [
+      "Antihistamines (e.g., Loratadine)",
+      "Decongestants (e.g., Pseudoephedrine)",
+      "Epinephrine auto-injectors",
       "Corticosteroids",
-      "Liver transplant"
+      "Immunotherapy (allergy shots)"
     ]
   },
-  "Common Cold": {
-    "description": "Common Cold is a viral infection of the upper respiratory tract.",
-    "precautions": [
-      "drink vitamin c rich drinks",
-      "take vapour",
-      "avoid cold food",
-      "keep fever in check"
+  "angina": {
+    "Description": "Angina is chest pain or discomfort due to reduced blood flow to the heart muscle, often triggered by exertion or stress, and relieved by rest or medication.",
+    "Precautions": [
+      "Avoid overexertion",
+      "Take nitroglycerin as prescribed",
+      "Manage stress",
+      "Avoid cold exposure"
     ],
-    "medications": [
-      "Antibiotics",
-      "Antiviral drugs",
-      "Antifungal drugs",
-      "IV fluids",
-      "Oxygen therapy"
-    ]
-  },
-  "Dengue": {
-    "description": "Dengue is a mosquito-borne viral infection causing flu-like symptoms.",
-    "precautions": [
-      "drink papaya leaf juice",
-      "avoid fatty spicy food",
-      "keep mosquitos away",
-      "keep hydrated"
-    ],
-    "medications": [
-      "Antibiotics",
-      "Antipyretics",
-      "Analgesics",
-      "IV fluids",
-      "Corticosteroids"
-    ]
-  },
-  "Diabetes": {
-    "description": "Diabetes is a chronic condition that affects how the body processes blood sugar.",
-    "precautions": [
-      "have balanced diet",
-      "exercise",
-      "consult doctor",
-      "follow up"
-    ],
-    "medications": [
-      "Insulin",
-      "Metformin",
-      "Sulfonylureas",
-      "DPP-4 inhibitors",
-      "GLP-1 receptor agonists"
-    ]
-  },
-  "Dimorphic hemmorhoids(piles)": {
-    "description": "Dimorphic hemmorhoids(piles) is a condition characterized by swollen blood vessels in the rectum.",
-    "precautions": [
-      "avoid fatty spicy food",
-      "consume witch hazel",
-      "warm bath with epsom salt",
-      "consume alovera juice"
-    ],
-    "medications": [
-      "Nitroglycerin",
-      "Aspirin",
+    "Medications": [
+      "Nitroglycerin (sublingual)",
       "Beta-blockers",
       "Calcium channel blockers",
-      "Thrombolytic drugs"
+      "Aspirin",
+      "Statins"
     ]
   },
-  "Drug Reaction": {
-    "description": "Drug Reaction occurs when the body reacts adversely to a medication.",
-    "precautions": [
-      "stop irritation",
-      "consult nearest hospital",
-      "stop taking drug",
-      "follow up"
+  "anxiety": {
+    "Description": "Anxiety is a mental health condition characterized by excessive worry, nervousness, or fear that interferes with daily activities, often accompanied by physical symptoms like restlessness, sweating, or rapid heartbeat.",
+    "Precautions": [
+      "Practice relaxation techniques",
+      "Avoid stimulants like caffeine",
+      "Maintain regular sleep",
+      "Seek counseling if needed"
     ],
-    "medications": [
+    "Medications": [
+      "SSRIs (e.g., Escitalopram)",
+      "SNRIs (e.g., Duloxetine)",
+      "Benzodiazepines (short-term use)",
+      "Buspirone",
+      "Cognitive Behavioral Therapy (CBT)"
+    ]
+  },
+  "appendicitis": {
+    "Description": "Appendicitis is inflammation of the appendix, usually requiring surgery, and causes sudden lower right abdominal pain, nausea, and fever.",
+    "Precautions": [
+      "Avoid taking laxatives",
+      "Seek emergency care",
+      "Don\u2019t eat or drink before surgery",
+      "Follow post-op instructions"
+    ],
+    "Medications": [
+      "Surgical removal (Appendectomy)",
+      "Pre-operative antibiotics (e.g., Ceftriaxone + Metronidazole)",
+      "Pain management",
+      "IV fluids",
+      "NPO status before surgery"
+    ]
+  },
+  "arthritis of the hip": {
+    "Description": "Arthritis of the hip involves inflammation and degeneration of the hip joint cartilage, leading to pain, stiffness, and reduced mobility, commonly due to osteoarthritis.",
+    "Precautions": [
+      "Do low-impact exercises",
+      "Use walking aids if needed",
+      "Maintain healthy weight",
+      "Take anti-inflammatory medication"
+    ],
+    "Medications": [
+      "NSAIDs",
+      "Corticosteroid injections",
+      "Physical therapy",
+      "Glucosamine supplements",
+      "Hip replacement surgery (in advanced cases)"
+    ]
+  },
+  "asthma": {
+    "Description": "Asthma is a chronic inflammatory disease of the airways causing recurrent wheezing, breathlessness, chest tightness, and coughing, often triggered by allergens, exercise, or cold air.",
+    "Precautions": [
+      "Avoid known triggers",
+      "Use inhaler as prescribed",
+      "Monitor peak flow",
+      "Keep emergency inhaler handy"
+    ],
+    "Medications": [
+      "Inhaled corticosteroids (e.g., Fluticasone)",
+      "Beta-agonists (e.g., Albuterol)",
+      "Leukotriene modifiers (e.g., Montelukast)",
+      "Anticholinergics (e.g., Ipratropium)",
+      "Omalizumab"
+    ]
+  },
+  "brachial neuritis": {
+    "Description": "Brachial neuritis is inflammation of the brachial plexus nerves, causing sudden shoulder and arm pain followed by weakness or numbness.",
+    "Precautions": [
+      "Avoid heavy lifting",
+      "Physical therapy",
+      "Manage pain with meds",
+      "Get adequate rest"
+    ],
+    "Medications": [
+      "NSAIDs",
+      "Oral corticosteroids",
+      "Gabapentin or Pregabalin",
+      "Physical therapy",
+      "Pain management"
+    ]
+  },
+  "bursitis": {
+    "Description": "Bursitis is inflammation of the bursae\u2014small fluid-filled sacs that cushion bones and joints\u2014causing joint pain, swelling, and limited movement, often from repetitive motion or pressure.",
+    "Precautions": [
+      "Rest the affected joint",
+      "Apply ice packs",
+      "Use joint support",
+      "Avoid repetitive strain"
+    ],
+    "Medications": [
+      "NSAIDs (e.g., Ibuprofen)",
+      "Corticosteroid injections",
+      "Ice packs",
+      "Physical therapy",
+      "Antibiotics (if septic bursitis)"
+    ]
+  },
+  "carpal tunnel syndrome": {
+    "Description": "Carpal tunnel syndrome is a condition caused by compression of the median nerve in the wrist, leading to numbness, tingling, and weakness in the hand and fingers.",
+    "Precautions": [
+      "Take frequent hand breaks",
+      "Use wrist splints",
+      "Avoid repetitive motions",
+      "Do stretching exercises"
+    ],
+    "Medications": [
+      "Wrist splint",
+      "NSAIDs",
+      "Corticosteroid injections",
+      "Gabapentin (if nerve pain)",
+      "Surgical decompression (if severe)"
+    ]
+  },
+  "cholecystitis": {
+    "Description": "Cholecystitis is inflammation of the gallbladder, often due to gallstones, causing severe upper abdominal pain, fever, nausea, and tenderness.",
+    "Precautions": [
+      "Avoid fatty foods",
+      "Stay hydrated",
+      "Follow up for imaging/tests",
+      "Take antibiotics as prescribed"
+    ],
+    "Medications": [
+      "IV antibiotics (e.g., Ceftriaxone + Metronidazole)",
+      "Pain relievers (e.g., Morphine)",
+      "IV fluids",
+      "NPO (nothing by mouth)",
+      "Cholecystectomy (surgical removal of gallbladder)"
+    ]
+  },
+  "chronic back pain": {
+    "Description": "Chronic back pain is persistent or recurring pain in the back lasting more than three months, often due to structural issues, nerve damage, or degenerative conditions.",
+    "Precautions": [
+      "Maintain proper posture",
+      "Regular stretching",
+      "Use ergonomic furniture",
+      "Avoid lifting heavy objects"
+    ],
+    "Medications": [
+      "NSAIDs",
+      "Muscle relaxants",
+      "Physical therapy",
+      "Epidural steroid injections",
+      "Chronic pain management (e.g., TENS, acupuncture)"
+    ]
+  },
+  "chronic constipation": {
+    "Description": "Chronic constipation is a long-term condition characterized by infrequent or difficult bowel movements, often accompanied by abdominal discomfort or bloating.",
+    "Precautions": [
+      "Increase fiber intake",
+      "Exercise regularly",
+      "Stay hydrated",
+      "Avoid delaying bowel movements"
+    ],
+    "Medications": [
+      "Laxatives (e.g., Polyethylene glycol)",
+      "Stool softeners (e.g., Docusate)",
+      "Fiber supplements (e.g., Psyllium)",
+      "Osmotic agents (e.g., Lactulose)",
+      "Prokinetics"
+    ]
+  },
+  "chronic obstructive pulmonary disease (copd)": {
+    "Description": "COPD is a group of progressive lung diseases, including emphysema and chronic bronchitis, characterized by airflow limitation, coughing, wheezing, and shortness of breath.",
+    "Precautions": [],
+    "Medications": [
+      "Bronchodilators (e.g., Salbutamol)",
+      "Inhaled corticosteroids",
+      "Phosphodiesterase-4 inhibitors (e.g., Roflumilast)",
+      "Oxygen therapy",
+      "Antibiotics during exacerbations"
+    ]
+  },
+  "common cold": {
+    "Description": "The common cold is a viral infection of the upper respiratory tract, typically causing sneezing, sore throat, nasal congestion, cough, and mild fever.",
+    "Precautions": [
+      "Drink plenty of fluids",
+      "Rest well",
+      "Use nasal decongestants",
+      "Practice good hygiene"
+    ],
+    "Medications": [
+      "Paracetamol",
+      "Ibuprofen",
+      "Decongestants (e.g., Pseudoephedrine)",
       "Antihistamines",
-      "Epinephrine",
+      "Cough syrups (e.g., Dextromethorphan)"
+    ]
+  },
+  "complex regional pain syndrome": {
+    "Description": "Complex regional pain syndrome (CRPS) is a chronic pain condition usually affecting a limb after injury, with symptoms including burning pain, swelling, and sensitivity to touch.",
+    "Precautions": [
+      "Follow physical therapy",
+      "Manage stress",
+      "Take prescribed medication",
+      "Avoid injury to the affected limb"
+    ],
+    "Medications": [
+      "Gabapentin",
+      "Amitriptyline",
+      "Physical therapy",
       "Corticosteroids",
-      "Antibiotics",
-      "Antifungal Cream"
+      "Nerve blocks"
     ]
   },
-  "Fungal infection": {
-    "description": "Fungal infection is a common skin condition caused by fungi.",
-    "precautions": [
-      "bath twice",
-      "use detol or neem in bathing water",
-      "keep infected area dry",
-      "use clean cloths"
+  "concussion": {
+    "Description": "A concussion is a mild traumatic brain injury caused by a blow to the head or body, resulting in temporary loss of brain function, such as confusion, memory loss, or dizziness.",
+    "Precautions": [
+      "Rest and avoid screens",
+      "Avoid physical activity",
+      "Monitor symptoms",
+      "Follow up with neurologist"
     ],
-    "medications": [
-      "Antifungal Cream",
-      "Fluconazole",
-      "Terbinafine",
-      "Clotrimazole",
-      "Ketoconazole"
+    "Medications": [
+      "Rest",
+      "Acetaminophen (avoid NSAIDs early)",
+      "Cognitive rest",
+      "Hydration",
+      "Gradual return to activities"
     ]
   },
-  "GERD": {
-    "description": "GERD (Gastroesophageal Reflux Disease) is a digestive disorder that affects the lower esophageal sphincter.",
-    "precautions": [
-      "avoid fatty spicy food",
-      "avoid lying down after eating",
-      "maintain healthy weight",
-      "exercise"
+  "conjunctivitis": {
+    "Description": "Conjunctivitis (pink eye) is inflammation of the conjunctiva of the eye due to infection or allergy, resulting in redness, discharge, and eye irritation.",
+    "Precautions": [
+      "Use prescribed eye drops",
+      "Avoid touching/rubbing eyes",
+      "Wash hands frequently",
+      "Don\u2019t share towels"
     ],
-    "medications": [
-      "Proton Pump Inhibitors (PPIs)",
-      "H2 Blockers",
-      "Antacids",
-      "Prokinetics",
-      "Antibiotics"
+    "Medications": [
+      "Antibiotic eye drops (e.g., Erythromycin, Moxifloxacin)",
+      "Antiviral drops (e.g., Ganciclovir for herpes)",
+      "Lubricant drops",
+      "Antihistamines (for allergic type)",
+      "Cool compresses"
     ]
   },
-  "Gastroenteritis": {
-    "description": "Gastroenteritis is an inflammation of the stomach and intestines, typically caused by a virus or bacteria.",
-    "precautions": [
-      "stop eating solid food for while",
-      "try taking small sips of water",
-      "rest",
-      "ease back into eating"
+  "conjunctivitis due to allergy": {
+    "Description": "Allergic conjunctivitis is inflammation of the conjunctiva (eye lining) caused by allergens like pollen or dust, leading to red, itchy, watery eyes without infectious discharge.",
+    "Precautions": [
+      "Avoid rubbing eyes",
+      "Use antihistamine drops",
+      "Keep environment clean",
+      "Avoid known allergens"
     ],
-    "medications": [
-      "Antibiotics",
-      "Antiemetic drugs",
-      "Antidiarrheal drugs",
-      "IV fluids",
-      "Probiotics"
+    "Medications": [
+      "Antihistamine eye drops (e.g., Olopatadine)",
+      "Mast cell stabilizers (e.g., Ketotifen)",
+      "Artificial tears",
+      "Oral antihistamines",
+      "Cold compress"
     ]
   },
-  "Heart attack": {
-    "description": "Heart attack is a sudden and severe reduction in blood flow to the heart muscle.",
-    "precautions": [
-      "call ambulance",
-      "chew or swallow asprin",
-      "keep calm"
+  "contact dermatitis": {
+    "Description": "Contact dermatitis is a skin inflammation caused by exposure to an irritant or allergen, resulting in redness, itching, blisters, or dryness.",
+    "Precautions": [
+      "Identify and avoid allergen",
+      "Use fragrance-free products",
+      "Apply soothing lotion",
+      "Wear gloves when needed"
     ],
-    "medications": [
-      "Compression stockings",
-      "Exercise",
-      "Elevating the legs",
-      "Sclerotherapy",
-      "Laser treatments"
+    "Medications": [
+      "Topical corticosteroids (e.g., Hydrocortisone)",
+      "Oral antihistamines",
+      "Moisturizers",
+      "Avoidance of allergen/irritant",
+      "Oral corticosteroids (if severe)"
     ]
   },
-  "Hepatitis B": {
-    "description": "Hepatitis B is a viral infection that attacks the liver.",
-    "precautions": [
-      "consult nearest hospital",
-      "vaccination",
-      "eat healthy",
-      "medication"
+  "cornea infection": {
+    "Description": "Cornea infection (keratitis) is an infection of the transparent front part of the eye, usually caused by bacteria, fungi, or viruses, leading to eye pain, redness, blurred vision, and light sensitivity.",
+    "Precautions": [
+      "Avoid touching eyes",
+      "Use prescribed eye drops",
+      "Wear sunglasses",
+      "Don\u2019t share towels or cosmetics"
     ],
-    "medications": [
-      "Antiviral drugs",
-      "IV fluids",
-      "Blood transfusions",
-      "Platelet transfusions",
-      "Liver transplant"
+    "Medications": [
+      "Antibiotic eye drops (e.g., Ciprofloxacin)",
+      "Antiviral eye drops (e.g., Ganciclovir)",
+      "Antifungal drops (e.g., Natamycin)",
+      "Lubricant eye drops",
+      "Steroids (in selected cases)"
     ]
   },
-  "Hepatitis C": {
-    "description": "Hepatitis C is a viral infection that causes liver inflammation.",
-    "precautions": [
-      "Consult nearest hospital",
-      "vaccination",
-      "eat healthy",
-      "medication"
+  "croup": {
+    "Description": "Croup is a viral infection that causes swelling of the airway in young children, leading to a barking cough, hoarseness, and difficulty breathing, often worse at night.",
+    "Precautions": [
+      "Use humidified air",
+      "Keep child calm",
+      "Encourage fluid intake",
+      "Seek medical help for breathing difficulty"
     ],
-    "medications": [
-      "Antiviral drugs",
-      "IV fluids",
-      "Blood transfusions",
-      "Platelet transfusions",
-      "Liver transplant"
+    "Medications": [
+      "Dexamethasone (oral or IM)",
+      "Nebulized epinephrine",
+      "Humidified air",
+      "Antipyretics",
+      "Hydration"
     ]
   },
-  "Hepatitis D": {
-    "description": "Hepatitis D is a serious liver disease caused by the hepatitis D virus.",
-    "precautions": [
-      "consult doctor",
-      "medication",
-      "eat healthy",
-      "follow up"
+  "degenerative disc disease": {
+    "Description": "Degenerative disc disease is a condition where spinal discs break down over time, leading to back pain, reduced flexibility, and sometimes nerve compression.",
+    "Precautions": [
+      "Maintain healthy weight",
+      "Avoid lifting heavy items",
+      "Engage in back exercises",
+      "Use lumbar support"
     ],
-    "medications": [
-      "Antiviral drugs",
-      "IV fluids",
-      "Blood transfusions",
-      "Platelet transfusions",
-      "Liver transplant"
+    "Medications": [
+      "NSAIDs",
+      "Physical therapy",
+      "Muscle relaxants",
+      "Steroid injections",
+      "Surgery (e.g., spinal fusion in advanced cases)"
     ]
   },
-  "Hepatitis E": {
-    "description": "Hepatitis E is a viral infection that causes liver inflammation.",
-    "precautions": [
-      "stop alcohol consumption",
-      "rest",
-      "consult doctor",
-      "medication"
+  "dental caries": {
+    "Description": "Dental caries (tooth decay) is the destruction of tooth enamel due to acids produced by bacteria feeding on sugars, leading to cavities, tooth pain, and infection if untreated.",
+    "Precautions": [
+      "Brush twice daily",
+      "Limit sugar intake",
+      "Visit dentist regularly",
+      "Floss daily"
     ],
-    "medications": [
-      "Alcohol cessation",
-      "Corticosteroids",
-      "IV fluids",
-      "Liver transplant",
-      "Nutritional support"
+    "Medications": [
+      "Fluoride toothpaste or gel",
+      "Dental fillings",
+      "Chlorhexidine mouth rinse",
+      "Analgesics for pain",
+      "Root canal therapy (if advanced)"
     ]
   },
-  "Hypertension": {
-    "description": "Hypertension, or high blood pressure, is a common cardiovascular condition.",
-    "precautions": [
-      "meditation",
-      "salt baths",
-      "reduce stress",
-      "get proper sleep"
+  "depression": {
+    "Description": "Depression is a mental health disorder characterized by persistent sadness, loss of interest or pleasure, fatigue, and changes in sleep or appetite, significantly impacting daily life.",
+    "Precautions": [
+      "Maintain social connection",
+      "Follow treatment plan",
+      "Get regular exercise",
+      "Avoid alcohol and drugs"
     ],
-    "medications": [
-      "Antihypertensive medications",
-      "Diuretics",
-      "Beta-blockers",
-      "ACE inhibitors",
-      "Calcium channel blockers"
+    "Medications": [
+      "SSRIs (e.g., Sertraline, Escitalopram)",
+      "SNRIs (e.g., Venlafaxine)",
+      "Atypical antidepressants (e.g., Bupropion)",
+      "Cognitive Behavioral Therapy (CBT)",
+      "Psychotherapy"
     ]
   },
-  "Hyperthyroidism": {
-    "description": "Hyperthyroidism is a condition where the thyroid gland produces too much thyroid hormone.",
-    "precautions": [
-      "eat healthy",
-      "massage",
-      "use lemon balm",
-      "take radioactive iodine treatment"
+  "developmental disability": {
+    "Description": "Developmental disabilities are chronic conditions that begin in childhood and affect physical, learning, language, or behavioral areas, such as autism or intellectual disability.",
+    "Precautions": [
+      "Follow individualized education plans",
+      "Encourage structured routine",
+      "Regular therapy",
+      "Provide positive reinforcement"
     ],
-    "medications": [
-      "Glucose tablets",
-      "Candy or juice",
-      "Glucagon injection",
-      "IV dextrose",
-      "Diazoxide"
+    "Medications": [
+      "Speech therapy",
+      "Occupational therapy",
+      "Behavioral therapy",
+      "Medications (e.g., Risperidone for irritability in autism)",
+      "Special education programs"
     ]
   },
-  "Hypoglycemia": {
-    "description": "Hypoglycemia is a condition characterized by abnormally low blood sugar levels.",
-    "precautions": [
-      "lie down on side",
-      "check in pulse",
-      "drink sugary drinks",
-      "consult doctor"
+  "diaper rash": {
+    "Description": "Diaper rash is skin irritation in the diaper area of infants or adults using diapers, often caused by moisture, friction, or infection.",
+    "Precautions": [
+      "Keep area dry",
+      "Change diapers frequently",
+      "Apply protective creams",
+      "Avoid scented products"
     ],
-    "medications": [
+    "Medications": [
+      "Zinc oxide cream",
+      "Petroleum jelly",
+      "Topical antifungals (e.g., Clotrimazole)",
+      "Hydrocortisone cream (short-term)",
+      "Frequent diaper changes"
+    ]
+  },
+  "diverticulitis": {
+    "Description": "Diverticulitis is inflammation or infection of small pouches (diverticula) in the colon wall, leading to abdominal pain, fever, and changes in bowel habits.",
+    "Precautions": [
+      "Eat low-fiber during flare-ups",
+      "Stay hydrated",
+      "Take antibiotics if prescribed",
+      "Avoid seeds/nuts if advised"
+    ],
+    "Medications": [
+      "Antibiotics (e.g., Ciprofloxacin + Metronidazole)",
+      "Clear liquid diet (during flare)",
       "Pain relievers",
-      "Exercise",
-      "Hot and cold packs",
-      "Joint protection",
+      "High-fiber diet (after recovery)",
+      "Surgery (if complications)"
+    ]
+  },
+  "drug reaction": {
+    "Description": "A drug reaction is an adverse response to a medication, ranging from mild rashes or stomach upset to severe allergic responses like Stevens-Johnson syndrome or anaphylaxis.",
+    "Precautions": [
+      "Stop the drug immediately",
+      "Consult a doctor",
+      "Use antihistamines if prescribed",
+      "Monitor for worsening symptoms"
+    ],
+    "Medications": [
+      "Discontinuation of offending drug",
+      "Antihistamines (e.g., Diphenhydramine)",
+      "Corticosteroids",
+      "Epinephrine (for anaphylaxis)",
+      "IV fluids and supportive care"
+    ]
+  },
+  "ear drum damage": {
+    "Description": "Ear drum damage (tympanic membrane perforation) is a tear or hole in the eardrum due to infection, injury, or loud noise, which may cause pain, hearing loss, or drainage.",
+    "Precautions": [
+      "Avoid water entry into ear",
+      "Don\u2019t insert objects into ear",
+      "Use ear drops as prescribed",
+      "Follow up with ENT"
+    ],
+    "Medications": [
+      "Antibiotic ear drops (if infection)",
+      "Oral antibiotics (if needed)",
+      "Avoid water entry",
+      "Pain relief (e.g., Acetaminophen)",
+      "Tympanoplasty (if persistent perforation)"
+    ]
+  },
+  "eczema": {
+    "Description": "Eczema (atopic dermatitis) is a chronic skin condition that causes itchy, inflamed, red, and dry skin, often triggered by allergens, stress, or irritants.",
+    "Precautions": [
+      "Moisturize regularly",
+      "Avoid irritants like soaps & wool",
+      "Use corticosteroid creams",
+      "Reduce stress"
+    ],
+    "Medications": [
+      "Topical corticosteroids",
+      "Emollients/Moisturizers",
+      "Antihistamines (for itching)",
+      "Calcineurin inhibitors (e.g., Tacrolimus)",
+      "Phototherapy (in severe cases)"
+    ]
+  },
+  "esophagitis": {
+    "Description": "Esophagitis is inflammation of the esophagus, commonly due to acid reflux, infections, or medications, causing pain when swallowing and chest discomfort.",
+    "Precautions": [
+      "Avoid spicy & acidic food",
+      "Eat smaller meals",
+      "Sit upright after eating",
+      "Follow prescribed medication"
+    ],
+    "Medications": [
+      "Proton Pump Inhibitors (e.g., Omeprazole)",
+      "H2 Blockers (e.g., Ranitidine)",
+      "Sucralfate",
+      "Antifungal or antiviral agents (if infectious)",
+      "Dietary changes"
+    ]
+  },
+  "eustachian tube dysfunction (ear disorder)": {
+    "Description": "Eustachian tube dysfunction occurs when the tube connecting the middle ear to the throat becomes blocked or fails to open, causing pressure, pain, or hearing issues.",
+    "Precautions": [
+      "Avoid flying with a cold",
+      "Use decongestants",
+      "Perform Valsalva maneuver",
+      "Stay hydrated"
+    ],
+    "Medications": [
+      "Nasal decongestants",
+      "Nasal corticosteroids",
+      "Auto-inflation (e.g., Valsalva maneuver)",
+      "Antihistamines",
+      "Surgical placement of ear tubes (in severe cases)"
+    ]
+  },
+  "fungal infection of the hair": {
+    "Description": "Fungal infection of the hair, or tinea capitis, is a scalp infection caused by dermatophyte fungi, resulting in scaly patches, hair loss, and sometimes black dots or swelling.",
+    "Precautions": [
+      "Keep scalp dry and clean",
+      "Avoid sharing personal items",
+      "Use antifungal shampoo",
+      "Maintain proper hygiene"
+    ],
+    "Medications": [
+      "Griseofulvin (oral)",
+      "Terbinafine (oral)",
+      "Ketoconazole shampoo",
+      "Selenium sulfide shampoo",
+      "Itraconazole"
+    ]
+  },
+  "gallstone": {
+    "Description": "Gallstones are hardened deposits of digestive fluid in the gallbladder that can block bile flow, causing abdominal pain, nausea, and sometimes infection.",
+    "Precautions": [
+      "Avoid high-fat foods",
+      "Maintain a healthy weight",
+      "Eat regular meals",
+      "Follow up for surgical evaluation if needed"
+    ],
+    "Medications": [
+      "Ursodeoxycholic acid (in some cases)",
+      "Pain relievers (e.g., NSAIDs)",
+      "Cholecystectomy (surgical removal)",
+      "Antibiotics (if cholecystitis)",
+      "Dietary modifications"
+    ]
+  },
+  "gastrointestinal hemorrhage": {
+    "Description": "Gastrointestinal hemorrhage is bleeding that occurs anywhere along the digestive tract, often presenting as vomiting blood or black, tarry stools, and can be caused by ulcers, varices, or cancer.",
+    "Precautions": [
+      "Avoid NSAIDs",
+      "Eat a soft bland diet",
+      "Limit alcohol",
+      "Follow up with GI specialist"
+    ],
+    "Medications": [
+      "IV proton pump inhibitors (e.g., Pantoprazole)",
+      "Endoscopic hemostasis",
+      "Blood transfusion",
+      "Octreotide (for variceal bleeding)",
+      "Antibiotics (e.g., Ceftriaxone) if cirrhosis present"
+    ]
+  },
+  "gout": {
+    "Description": "Gout is a form of inflammatory arthritis caused by buildup of uric acid crystals in joints, leading to sudden, severe pain, redness, and swelling, often in the big toe.",
+    "Precautions": [
+      "Avoid purine-rich food",
+      "Stay hydrated",
+      "Limit alcohol intake",
+      "Take medication as prescribed"
+    ],
+    "Medications": [
+      "Colchicine",
+      "NSAIDs (e.g., Indomethacin)",
+      "Allopurinol",
+      "Febuxostat",
+      "Corticosteroids"
+    ]
+  },
+  "gum disease": {
+    "Description": "Gum disease (periodontal disease) is an infection and inflammation of the gums and surrounding tissues, often caused by poor oral hygiene, leading to bleeding, receding gums, and tooth loss.",
+    "Precautions": [
+      "Maintain oral hygiene",
+      "Floss daily",
+      "Avoid smoking",
+      "Visit dentist regularly"
+    ],
+    "Medications": [
+      "Antibacterial mouthwash (e.g., Chlorhexidine)",
+      "Scaling and root planing",
+      "Doxycycline",
+      "Fluoride toothpaste",
+      "Surgical interventions (if severe)"
+    ]
+  },
+  "heart attack": {
+    "Description": "A heart attack (myocardial infarction) occurs when blood flow to part of the heart is blocked, leading to chest pain, shortness of breath, nausea, and potentially life-threatening damage to heart muscle.",
+    "Precautions": [
+      "Take prescribed medication",
+      "Avoid stress",
+      "Eat heart-healthy diet",
+      "Monitor cholesterol and BP"
+    ],
+    "Medications": [
+      "Aspirin",
+      "Nitroglycerin",
+      "Beta-blockers (e.g., Metoprolol)",
+      "ACE inhibitors",
+      "Thrombolytics or PCI (percutaneous coronary intervention)"
+    ]
+  },
+  "heart failure": {
+    "Description": "Heart failure is a condition where the heart can't pump blood effectively, leading to fatigue, shortness of breath, fluid retention, and reduced exercise capacity.",
+    "Precautions": [
+      "Monitor fluid intake",
+      "Follow low-sodium diet",
+      "Take prescribed meds",
+      "Track weight daily"
+    ],
+    "Medications": [
+      "ACE inhibitors",
+      "Beta-blockers",
+      "Loop diuretics (e.g., Furosemide)",
+      "Aldosterone antagonists (e.g., Spironolactone)",
+      "Digoxin (in some cases)"
+    ]
+  },
+  "hemorrhoids": {
+    "Description": "Hemorrhoids are swollen veins in the anus or rectum that cause pain, itching, bleeding, or discomfort during bowel movements.",
+    "Precautions": [
+      "Eat fiber-rich foods",
+      "Avoid prolonged sitting",
+      "Stay hydrated",
+      "Use sitz baths"
+    ],
+    "Medications": [
+      "Topical hydrocortisone cream",
+      "Witch hazel pads",
+      "Stool softeners (e.g., Docusate)",
+      "Sitz baths",
+      "Surgical procedures (e.g., rubber band ligation)"
+    ]
+  },
+  "herniated disk": {
+    "Description": "A herniated disk occurs when the inner gel-like core of a spinal disc bulges out through a tear, pressing on nearby nerves and causing back pain, numbness, or weakness.",
+    "Precautions": [
+      "Avoid lifting heavy items",
+      "Follow physical therapy",
+      "Use proper posture",
+      "Take prescribed meds"
+    ],
+    "Medications": [
+      "NSAIDs",
+      "Physical therapy",
+      "Muscle relaxants",
+      "Steroid injections",
+      "Surgical discectomy (if severe)"
+    ]
+  },
+  "hiatal hernia": {
+    "Description": "A hiatal hernia occurs when the upper part of the stomach pushes through the diaphragm into the chest cavity, often causing symptoms like heartburn, reflux, and chest pain.",
+    "Precautions": [
+      "Eat small frequent meals",
+      "Avoid lying down after eating",
+      "Avoid spicy food",
+      "Maintain healthy weight"
+    ],
+    "Medications": [
+      "Antacids",
+      "Proton Pump Inhibitors (e.g., Omeprazole)",
+      "H2 Blockers (e.g., Ranitidine)",
+      "Prokinetic agents",
+      "Surgery (in severe cases)"
+    ]
+  },
+  "hypertensive heart disease": {
+    "Description": "Hypertensive heart disease includes conditions caused by chronic high blood pressure, such as heart failure, thickened heart muscle, or coronary artery disease.",
+    "Precautions": [
+      "Reduce salt intake",
+      "Monitor blood pressure",
+      "Exercise regularly",
+      "Take antihypertensive medication"
+    ],
+    "Medications": [
+      "ACE inhibitors (e.g., Lisinopril)",
+      "Beta-blockers (e.g., Metoprolol)",
+      "Diuretics (e.g., Furosemide)",
+      "Calcium channel blockers (e.g., Amlodipine)",
+      "Lifestyle modification"
+    ]
+  },
+  "hypoglycemia": {
+    "Description": "Hypoglycemia is a condition characterized by abnormally low blood sugar levels, often causing shakiness, sweating, confusion, irritability, or fainting, common in diabetics on insulin.",
+    "Precautions": [
+      "Eat small frequent meals",
+      "Carry glucose tablets",
+      "Avoid skipping meals",
+      "Monitor blood sugar levels"
+    ],
+    "Medications": [
+      "Glucose tablets",
+      "Juice or sugary snacks",
+      "Glucagon injection (emergency)",
+      "Adjust insulin or diabetes medication",
+      "Frequent meals"
+    ]
+  },
+  "infectious gastroenteritis": {
+    "Description": "Infectious gastroenteritis is an intestinal infection caused by viruses, bacteria, or parasites, leading to symptoms like diarrhea, vomiting, abdominal cramps, and fever.",
+    "Precautions": [
+      "Wash hands frequently",
+      "Avoid sharing utensils",
+      "Drink clean water",
+      "Avoid street food"
+    ],
+    "Medications": [
+      "Oral rehydration salts (ORS)",
+      "Antibiotics (e.g., Ciprofloxacin, if bacterial)",
+      "Antiemetics (e.g., Ondansetron)",
+      "Probiotics",
+      "Loperamide (if appropriate)"
+    ]
+  },
+  "injury to the arm": {
+    "Description": "Injury to the arm refers to damage to muscles, bones, ligaments, or skin in the arm area from trauma, leading to pain, swelling, bruising, or limited movement.",
+    "Precautions": [
+      "Immobilize the arm",
+      "Apply cold compress",
+      "Elevate the arm",
+      "Seek medical care if swelling"
+    ],
+    "Medications": [
+      "Pain relievers (e.g., Acetaminophen)",
+      "Cold compress",
+      "Immobilization/splinting",
+      "Antibiotics (if open wound)",
       "Physical therapy"
     ]
   },
-  "Hypothyroidism": {
-    "description": "Hypothyroidism is a condition where the thyroid gland doesn't produce enough thyroid hormone.",
-    "precautions": [
-      "reduce stress",
-      "exercise",
-      "eat healthy",
-      "get proper sleep"
+  "injury to the leg": {
+    "Description": "Injury to the leg includes trauma to any part of the leg such as the thigh, knee, shin, or ankle, potentially involving muscles, bones, or ligaments.",
+    "Precautions": [
+      "Elevate the leg",
+      "Apply ice packs",
+      "Avoid putting weight",
+      "Use crutches if advised"
     ],
-    "medications": [
-      "Antithyroid medications",
-      "Radioactive iodine",
-      "Thyroid surgery",
-      "Beta-blockers",
-      "Corticosteroids"
-    ]
-  },
-  "Impetigo": {
-    "description": "Impetigo is a highly contagious skin infection causing red sores that can break open.",
-    "precautions": [
-      "soak affected area in warm water",
-      "use antibiotics",
-      "remove scabs with wet compressed cloth",
-      "consult doctor"
-    ],
-    "medications": [
-      "Topical antibiotics",
-      "Oral antibiotics",
-      "Antiseptics",
-      "Ointments",
-      "Warm compresses"
-    ]
-  },
-  "Jaundice": {
-    "description": "Jaundice is a yellow discoloration of the skin and eyes, often indicating liver problems.",
-    "precautions": [
-      "drink plenty of water",
-      "consume milk thistle",
-      "eat fruits and high fiberous food",
-      "medication"
-    ],
-    "medications": [
-      "IV fluids",
-      "Blood transfusions",
-      "Liver transplant",
-      "Medications for itching",
-      "Antiviral medications"
-    ]
-  },
-  "Malaria": {
-    "description": "Malaria is a mosquito-borne infectious disease affecting humans and other animals.",
-    "precautions": [
-      "Consult nearest hospital",
-      "avoid oily food",
-      "avoid non veg food",
-      "keep mosquitos out"
-    ],
-    "medications": [
-      "Antimalarial drugs",
-      "Antipyretics",
-      "Antiemetic drugs",
-      "IV fluids",
-      "Blood transfusions"
-    ]
-  },
-  "Migraine": {
-    "description": "Migraine is a type of headache that often involves severe pain and sensitivity to light and sound.",
-    "precautions": [
-      "meditation",
-      "reduce stress",
-      "use poloroid glasses in sun",
-      "consult doctor"
-    ],
-    "medications": [
-      "Analgesics",
-      "Triptans",
-      "Ergotamine derivatives",
-      "Preventive medications",
-      "Biofeedback"
-    ]
-  },
-  "Osteoarthristis": {
-    "description": "Osteoarthristis is a degenerative joint disease that affects the cartilage in joints.",
-    "precautions": [
-      "acetaminophen",
-      "consult nearest hospital",
-      "follow up",
-      "salt baths"
-    ],
-    "medications": [
-      "NSAIDs",
-      "Disease-modifying antirheumatic drugs (DMARDs)",
-      "Biologics",
-      "Corticosteroids",
-      "Joint replacement surgery"
-    ]
-  },
-  "Paralysis (brain hemorrhage)": {
-    "description": "Paralysis (brain hemorrhage) refers to the loss of muscle function due to bleeding in the brain.",
-    "precautions": [
-      "massage",
-      "eat healthy",
-      "exercise",
-      "consult doctor"
-    ],
-    "medications": [
-      "Blood thinners",
-      "Clot-dissolving medications",
-      "Anticonvulsants",
-      "Physical therapy",
-      "Occupational therapy"
-    ]
-  },
-  "Peptic ulcer disease": {
-    "description": "Peptic ulcer disease involves sores that develop on the inner lining of the stomach and small intestine.",
-    "precautions": [
-      "avoid fatty spicy food",
-      "consume probiotic food",
-      "eliminate milk",
-      "limit alcohol"
-    ],
-    "medications": [
-      "Antibiotics",
-      "Proton Pump Inhibitors (PPIs)",
-      "H2 Blockers",
-      "Antacids",
-      "Cytoprotective agents"
-    ]
-  },
-  "Pneumonia": {
-    "description": "Pneumonia is an inflammatory condition affecting the air sacs in the lungs.",
-    "precautions": [
-      "consult doctor",
-      "medication",
-      "rest",
-      "follow up"
-    ],
-    "medications": [
-      "Laxatives",
+    "Medications": [
       "Pain relievers",
-      "Warm baths",
-      "Cold compresses",
-      "High-fiber diet"
+      "Compression bandages",
+      "Crutches or brace",
+      "Physical therapy",
+      "Antibiotics (if open wound)"
     ]
   },
-  "Psoriasis": {
-    "description": "Psoriasis is a chronic skin condition characterized by red, itchy, and scaly patches.",
-    "precautions": [
-      "wash hands with warm soapy water",
-      "stop bleeding using pressure",
-      "consult doctor",
-      "salt baths"
+  "injury to the trunk": {
+    "Description": "Injury to the trunk includes trauma to the chest, abdomen, or back areas, possibly involving internal organs, muscles, or bones, and can range from minor bruises to serious internal damage.",
+    "Precautions": [
+      "Apply ice or heat",
+      "Rest adequately",
+      "Use support belts if advised",
+      "Avoid strenuous activity"
     ],
-    "medications": [
-      "Topical treatments",
-      "Phototherapy",
-      "Systemic medications",
-      "Biologics",
-      "Coal tar"
+    "Medications": [
+      "Pain relievers (e.g., Ibuprofen)",
+      "Ice/heat therapy",
+      "Muscle relaxants",
+      "Wound care (if external)",
+      "Physiotherapy"
     ]
   },
-  "Tuberculosis": {
-    "description": "Tuberculosis is a bacterial infection that primarily affects the lungs.",
-    "precautions": [
-      "cover mouth",
-      "consult doctor",
-      "medication",
-      "rest"
+  "liver disease": {
+    "Description": "Liver disease refers to a range of disorders affecting the liver, such as hepatitis, fatty liver, or cirrhosis, potentially causing jaundice, fatigue, and liver dysfunction.",
+    "Precautions": [
+      "Avoid alcohol",
+      "Follow a liver-friendly diet",
+      "Get vaccinated for hepatitis",
+      "Monitor liver function tests"
     ],
-    "medications": [
-      "Antipyretics",
-      "Decongestants",
-      "Cough suppressants",
+    "Medications": [
+      "Lactulose (for hepatic encephalopathy)",
+      "Diuretics (e.g., Spironolactone)",
+      "Vitamin K (if coagulopathy)",
+      "Ursodeoxycholic acid",
+      "Antivirals (e.g., Tenofovir for HBV)"
+    ]
+  },
+  "macular degeneration": {
+    "Description": "Macular degeneration is an eye disorder that damages the macula, the part of the retina responsible for central vision, leading to blurred or loss of central vision, typically in older adults.",
+    "Precautions": [
+      "Wear sunglasses",
+      "Eat leafy greens",
+      "Avoid smoking",
+      "Regular eye checkups"
+    ],
+    "Medications": [
+      "Anti-VEGF injections (e.g., Ranibizumab, Aflibercept)",
+      "AREDS2 vitamin supplements",
+      "Photodynamic therapy",
+      "Laser therapy (rarely)",
+      "Low vision aids"
+    ]
+  },
+  "marijuana abuse": {
+    "Description": "Marijuana abuse refers to the excessive or harmful use of cannabis, which can lead to cognitive impairment, altered judgment, addiction, and long-term mental health issues.",
+    "Precautions": [
+      "Avoid peer pressure",
+      "Seek counseling",
+      "Build healthy habits",
+      "Avoid triggering environments"
+    ],
+    "Medications": [
+      "Behavioral therapy",
+      "CBT",
+      "Motivational enhancement therapy",
+      "No FDA-approved medications",
+      "Support groups (e.g., NA)"
+    ]
+  },
+  "multiple sclerosis": {
+    "Description": "Multiple sclerosis (MS) is an autoimmune disease where the immune system attacks the protective sheath of nerves, leading to weakness, vision problems, and coordination issues.",
+    "Precautions": [
+      "Avoid overheating",
+      "Follow medication schedule",
+      "Stay physically active",
+      "Rest when needed"
+    ],
+    "Medications": [
+      "Interferon beta",
+      "Glatiramer acetate",
+      "Natalizumab",
+      "Corticosteroids (for flare-ups)",
+      "Disease-modifying therapies (e.g., Fingolimod)"
+    ]
+  },
+  "noninfectious gastroenteritis": {
+    "Description": "Noninfectious gastroenteritis refers to inflammation of the stomach and intestines not caused by infection, but by irritants like medications, alcohol, or food intolerances.",
+    "Precautions": [
+      "Avoid irritant foods",
+      "Stay hydrated",
+      "Eat bland diet",
+      "Rest well"
+    ],
+    "Medications": [
+      "Antiemetics (e.g., Ondansetron)",
+      "Antispasmodics (e.g., Dicyclomine)",
+      "Probiotics",
+      "Hydration therapy",
+      "Dietary changes (BRAT diet)"
+    ]
+  },
+  "nose disorder": {
+    "Description": "Nose disorders include structural or inflammatory issues such as deviated septum, nasal polyps, or rhinitis, causing congestion, breathing difficulty, or nosebleeds.",
+    "Precautions": [
+      "Avoid nose picking",
+      "Keep nasal passages moist",
+      "Use saline sprays",
+      "Avoid irritants and allergens"
+    ],
+    "Medications": [
+      "Nasal decongestants (e.g., Oxymetazoline)",
       "Antihistamines",
-      "Pain relievers"
+      "Saline nasal spray",
+      "Intranasal corticosteroids",
+      "Antibiotics (if bacterial infection)"
     ]
   },
-  "Typhoid": {
-    "description": "Typhoid is a bacterial infection that can lead to a high fever and gastrointestinal symptoms.",
-    "precautions": [
-      "eat high calorie vegitables",
-      "antiboitic therapy",
-      "consult doctor",
-      "medication"
+  "obstructive sleep apnea (osa)": {
+    "Description": "OSA is a sleep disorder where the throat muscles intermittently relax and block the airway, causing repeated pauses in breathing during sleep and leading to poor rest and fatigue.",
+    "Precautions": [
+      "Maintain healthy weight",
+      "Use CPAP machine if prescribed",
+      "Avoid alcohol before bedtime",
+      "Sleep on your side"
     ],
-    "medications": [
-      "Vaccination",
-      "Antiviral drugs",
-      "IV fluids",
-      "Blood transfusions",
-      "Liver transplant"
+    "Medications": [
+      "CPAP (Continuous Positive Airway Pressure)",
+      "Weight loss",
+      "Mandibular advancement device",
+      "Modafinil (for residual sleepiness)",
+      "Surgery (e.g., UPPP, if indicated)"
     ]
   },
-  "Urinary tract infection": {
-    "description": "Urinary tract infection is an infection in any part of the urinary system.",
-    "precautions": [
-      "drink plenty of water",
-      "increase vitamin c intake",
-      "drink cranberry juice",
-      "take probiotics"
+  "otitis externa (swimmer's ear)": {
+    "Description": "Otitis externa is an infection of the outer ear canal, often due to trapped water and bacteria, leading to ear pain, itching, swelling, and discharge.",
+    "Precautions": [
+      "Dry ears after swimming",
+      "Avoid inserting objects into ears",
+      "Use prescribed ear drops",
+      "Avoid dirty water bodies"
     ],
-    "medications": [
-      "Antibiotics",
-      "Urinary analgesics",
-      "Phenazopyridine",
-      "Antispasmodics",
-      "Probiotics"
+    "Medications": [
+      "Topical antibiotic ear drops (e.g., Ciprofloxacin + Hydrocortisone)",
+      "Acidifying drops (e.g., Acetic acid)",
+      "Analgesics",
+      "Ear wick for deep infections",
+      "Avoid water exposure"
     ]
   },
-  "Varicose veins": {
-    "description": "Varicose veins are enlarged, twisted veins that usually appear on the legs.",
-    "precautions": [
-      "lie down flat and raise the leg high",
-      "use oinments",
-      "use vein compression",
-      "dont stand still for long"
+  "otitis media": {
+    "Description": "Otitis media is a middle ear infection that commonly affects children, causing ear pain, fever, irritability, and sometimes fluid discharge from the ear.",
+    "Precautions": [
+      "Avoid water entering ears",
+      "Take antibiotics as prescribed",
+      "Use warm compress",
+      "Follow up with ENT specialist"
     ],
-    "medications": [
-      "Levothyroxine",
-      "Antithyroid medications",
+    "Medications": [
+      "Amoxicillin",
+      "Cefdinir",
+      "Acetaminophen for pain",
+      "Decongestants",
+      "Tympanostomy (if recurrent)"
+    ]
+  },
+  "pain after an operation": {
+    "Description": "Pain after an operation (postoperative pain) is discomfort or soreness at the surgical site, which may be due to tissue injury, inflammation, or healing processes.",
+    "Precautions": [
+      "Take pain meds as prescribed",
+      "Avoid physical strain",
+      "Keep surgical area clean",
+      "Attend follow-up appointments"
+    ],
+    "Medications": [
+      "Acetaminophen",
+      "Opioids (e.g., Morphine, Tramadol)",
+      "NSAIDs",
+      "Local anesthetics",
+      "Nerve blocks"
+    ]
+  },
+  "panic disorder": {
+    "Description": "Panic disorder is a mental health condition marked by sudden, unexpected panic attacks\u2014intense periods of fear or discomfort\u2014often accompanied by physical symptoms like chest pain, rapid heartbeat, shortness of breath, or dizziness.",
+    "Precautions": [
+      "Practice deep breathing",
+      "Avoid caffeine",
+      "Follow therapy plan",
+      "Seek support from loved ones"
+    ],
+    "Medications": [
+      "SSRIs (e.g., Sertraline, Fluoxetine)",
+      "Benzodiazepines (e.g., Clonazepam, Alprazolam)",
+      "SNRIs (e.g., Venlafaxine)",
       "Beta-blockers",
-      "Radioactive iodine",
-      "Thyroid surgery"
+      "Cognitive Behavioral Therapy (CBT)"
     ]
   },
-  "hepatitis A": {
-    "description": "hepatitis A is a viral liver disease.",
-    "precautions": [
-      "Consult nearest hospital",
-      "wash hands through",
-      "avoid fatty spicy food",
-      "medication"
+  "peripheral nerve disorder": {
+    "Description": "Peripheral nerve disorders affect the nerves outside the brain and spinal cord, leading to numbness, weakness, pain, or coordination problems.",
+    "Precautions": [
+      "Avoid repetitive injury",
+      "Use ergonomic tools",
+      "Take B vitamins if deficient",
+      "Follow neurologist\u2019s advice"
     ],
-    "medications": [
-      "Vaccination",
-      "Antiviral drugs",
+    "Medications": [
+      "Gabapentin",
+      "Pregabalin",
+      "Amitriptyline",
+      "Physical therapy",
+      "Alpha-lipoic acid (as supplement)"
+    ]
+  },
+  "personality disorder": {
+    "Description": "Personality disorders are mental health conditions involving rigid and unhealthy patterns of thinking, functioning, and behaving that impair social or occupational life.",
+    "Precautions": [
+      "Follow psychotherapy plan",
+      "Avoid substance use",
+      "Build healthy relationships",
+      "Maintain regular routines"
+    ],
+    "Medications": [
+      "Psychotherapy (e.g., DBT for BPD)",
+      "SSRIs (for mood symptoms)",
+      "Mood stabilizers (e.g., Lithium)",
+      "Antipsychotics (in some cases)",
+      "Group therapy"
+    ]
+  },
+  "pneumonia": {
+    "Description": "Pneumonia is an infection of the lungs caused by bacteria, viruses, or fungi, resulting in cough, fever, chest pain, and difficulty breathing due to inflammation and fluid in the lungs.",
+    "Precautions": [
+      "Take full course of antibiotics",
+      "Avoid smoking",
+      "Rest adequately",
+      "Stay hydrated"
+    ],
+    "Medications": [
+      "Antibiotics (e.g., Azithromycin, Ceftriaxone)",
+      "Antivirals (e.g., Oseltamivir if viral)",
+      "Expectorants",
+      "Fever reducers (e.g., Acetaminophen)",
+      "Oxygen therapy if needed"
+    ]
+  },
+  "psoriasis": {
+    "Description": "Psoriasis is a chronic autoimmune skin condition causing rapid skin cell growth that results in thick, scaly, red patches, often on the elbows, knees, or scalp.",
+    "Precautions": [
+      "Keep skin moisturized",
+      "Avoid triggers like stress",
+      "Use prescribed creams",
+      "Avoid scratching"
+    ],
+    "Medications": [
+      "Topical corticosteroids",
+      "Vitamin D analogs (e.g., Calcipotriol)",
+      "Methotrexate",
+      "Biologics (e.g., Adalimumab)",
+      "Phototherapy (UVB)"
+    ]
+  },
+  "pyogenic skin infection": {
+    "Description": "A pyogenic skin infection is a bacterial infection of the skin that produces pus, such as abscesses, boils, or cellulitis, often caused by Staphylococcus aureus.",
+    "Precautions": [
+      "Keep wound clean and dry",
+      "Avoid scratching",
+      "Take prescribed antibiotics",
+      "Cover infected area"
+    ],
+    "Medications": [
+      "Oral antibiotics (e.g., Cephalexin, Clindamycin)",
+      "Topical antibiotics (e.g., Mupirocin)",
+      "Incision and drainage",
+      "Antiseptic cleansing",
+      "Pain management"
+    ]
+  },
+  "rectal disorder": {
+    "Description": "Rectal disorders include conditions affecting the rectum such as hemorrhoids, fissures, or prolapse, often causing pain, bleeding, or difficulty during bowel movements.",
+    "Precautions": [
+      "Eat a high-fiber diet",
+      "Drink plenty of water",
+      "Avoid straining during bowel movements",
+      "Use sitz baths"
+    ],
+    "Medications": [
+      "Hydrocortisone suppositories",
+      "Laxatives (e.g., Lactulose)",
+      "Fiber supplements",
+      "Sitz baths",
+      "Surgical intervention (e.g., hemorrhoidectomy if needed)"
+    ]
+  },
+  "schizophrenia": {
+    "Description": "Schizophrenia is a severe psychiatric disorder involving distortions in thinking, perception, emotions, language, and behavior, often with hallucinations or delusions.",
+    "Precautions": [
+      "Adhere to medication",
+      "Avoid substance abuse",
+      "Attend therapy sessions",
+      "Build a support network"
+    ],
+    "Medications": [
+      "Antipsychotics (e.g., Risperidone, Olanzapine)",
+      "Clozapine (treatment-resistant cases)",
+      "Cognitive behavioral therapy",
+      "Long-acting injectables",
+      "Psychosocial support"
+    ]
+  },
+  "seasonal allergies (hay fever)": {
+    "Description": "Seasonal allergies, or hay fever, are allergic reactions to airborne allergens like pollen, causing sneezing, nasal congestion, itchy eyes, and throat irritation, often during specific seasons.",
+    "Precautions": [
+      "Keep windows closed during high pollen",
+      "Shower after being outdoors",
+      "Use air purifier",
+      "Take antihistamines"
+    ],
+    "Medications": [
+      "Oral antihistamines (e.g., Cetirizine)",
+      "Intranasal corticosteroids (e.g., Fluticasone)",
+      "Leukotriene receptor antagonists (e.g., Montelukast)",
+      "Nasal saline rinses",
+      "Allergy immunotherapy"
+    ]
+  },
+  "sebaceous cyst": {
+    "Description": "A sebaceous cyst is a noncancerous bump beneath the skin, filled with oily material, often caused by blocked sebaceous glands.",
+    "Precautions": [
+      "Keep area clean",
+      "Avoid squeezing",
+      "Apply warm compress",
+      "Get it drained by a doctor if needed"
+    ],
+    "Medications": [
+      "Warm compress",
+      "Incision and drainage (if infected)",
+      "Antibiotics (if signs of infection)",
+      "Surgical excision",
+      "Steroid injection (if inflamed)"
+    ]
+  },
+  "sepsis": {
+    "Description": "Sepsis is a life-threatening response to infection where the body\u2019s immune system causes widespread inflammation, leading to tissue damage, organ failure, and possibly death.",
+    "Precautions": [
+      "Seek urgent medical care",
+      "Follow antibiotic regimen",
+      "Monitor temperature & vitals",
+      "Maintain good hygiene"
+    ],
+    "Medications": [
+      "IV broad-spectrum antibiotics (e.g., Piperacillin-tazobactam)",
       "IV fluids",
-      "Blood transfusions",
-      "Liver transplant"
+      "Vasopressors (e.g., Norepinephrine)",
+      "Oxygen therapy",
+      "Source control (e.g., drainage of abscess)"
+    ]
+  },
+  "sickle cell crisis": {
+    "Description": "Sickle cell crisis is a painful episode in people with sickle cell disease, where misshapen red blood cells block blood flow, causing severe pain, fatigue, and potential organ damage.",
+    "Precautions": [
+      "Stay hydrated",
+      "Avoid extreme temperatures",
+      "Prevent infections",
+      "Take prescribed medication regularly"
+    ],
+    "Medications": [
+      "Hydroxyurea",
+      "Folic acid",
+      "Pain management (e.g., Morphine)",
+      "IV fluids",
+      "Blood transfusions (if needed)"
+    ]
+  },
+  "sinus bradycardia": {
+    "Description": "Sinus bradycardia is a slower than normal heart rate originating from the sinus node, which may be normal in athletes or caused by medications or medical conditions.",
+    "Precautions": [
+      "Avoid excessive physical strain",
+      "Regular cardiac monitoring",
+      "Follow-up with cardiologist",
+      "Manage electrolyte balance"
+    ],
+    "Medications": [
+      "Atropine (acute cases)",
+      "Temporary or permanent pacemaker (if symptomatic)",
+      "Adjust medications (if drug-induced)",
+      "Isoproterenol infusion (if needed)",
+      "Monitor ECG"
+    ]
+  },
+  "skin pigmentation disorder": {
+    "Description": "Skin pigmentation disorders involve changes in skin color due to excess or lack of melanin, such as vitiligo, melasma, or hyperpigmentation.",
+    "Precautions": [
+      "Use sunscreen daily",
+      "Avoid skin irritants",
+      "Follow dermatological treatments",
+      "Stay hydrated"
+    ],
+    "Medications": [
+      "Hydroquinone cream",
+      "Topical retinoids",
+      "Azelaic acid",
+      "Chemical peels",
+      "Laser therapy (for resistant cases)"
+    ]
+  },
+  "skin polyp": {
+    "Description": "A skin polyp (skin tag) is a small, benign growth of skin that typically appears in areas where skin rubs together, like the neck, armpits, or groin.",
+    "Precautions": [
+      "Avoid irritation or injury to area",
+      "Monitor size and appearance",
+      "Don\u2019t self-remove",
+      "Seek medical evaluation"
+    ],
+    "Medications": [
+      "Cryotherapy",
+      "Electrosurgical removal",
+      "Snare excision",
+      "Topical anesthesia",
+      "Histopathology (to rule out malignancy)"
+    ]
+  },
+  "spinal stenosis": {
+    "Description": "Spinal stenosis is the narrowing of the spinal canal, often due to arthritis or disc problems, leading to back pain, numbness, and weakness in the legs.",
+    "Precautions": [
+      "Avoid high-impact activities",
+      "Use walking support",
+      "Physical therapy",
+      "Take anti-inflammatory meds"
+    ],
+    "Medications": [
+      "NSAIDs",
+      "Physical therapy",
+      "Epidural steroid injections",
+      "Gabapentin or Pregabalin",
+      "Surgical decompression (e.g., laminectomy)"
+    ]
+  },
+  "spondylosis": {
+    "Description": "Spondylosis is a degenerative condition affecting the spine due to aging, resulting in stiffness, pain, and reduced mobility due to wear and tear on spinal discs and joints.",
+    "Precautions": [
+      "Maintain good posture",
+      "Exercise regularly",
+      "Use ergonomic chairs",
+      "Avoid lifting heavy weights"
+    ],
+    "Medications": [
+      "NSAIDs (e.g., Naproxen)",
+      "Muscle relaxants",
+      "Physical therapy",
+      "Epidural steroid injections",
+      "Surgery in severe cases"
+    ]
+  },
+  "sprain or strain": {
+    "Description": "A sprain is a stretched or torn ligament, while a strain is a stretched or torn muscle or tendon; both cause pain, swelling, and limited movement.",
+    "Precautions": [
+      "Rest the area",
+      "Apply ice packs",
+      "Compression with bandage",
+      "Elevate the limb"
+    ],
+    "Medications": [
+      "RICE (Rest, Ice, Compression, Elevation)",
+      "NSAIDs (e.g., Ibuprofen)",
+      "Muscle relaxants",
+      "Physical therapy",
+      "Immobilization (if needed)"
+    ]
+  },
+  "strep throat": {
+    "Description": "Strep throat is a bacterial throat infection caused by Streptococcus pyogenes, leading to sore throat, fever, swollen glands, and red tonsils with white patches.",
+    "Precautions": [
+      "Complete full antibiotic course",
+      "Avoid sharing utensils",
+      "Get adequate rest",
+      "Drink warm fluids"
+    ],
+    "Medications": [
+      "Penicillin",
+      "Amoxicillin",
+      "Azithromycin (if allergic to penicillin)",
+      "Analgesics (e.g., Acetaminophen)",
+      "Salt water gargles"
+    ]
+  },
+  "stye": {
+    "Description": "A stye is a red, painful lump near the edge of the eyelid caused by a bacterial infection of an oil gland, often resolving on its own or with warm compresses.",
+    "Precautions": [
+      "Apply warm compress",
+      "Avoid touching or squeezing",
+      "Maintain eyelid hygiene",
+      "Discontinue eye makeup temporarily"
+    ],
+    "Medications": [
+      "Warm compresses",
+      "Topical antibiotic ointment (e.g., Erythromycin)",
+      "Oral antibiotics (if spreading)",
+      "Pain relievers",
+      "Incision and drainage (if abscess forms)"
     ]
   }
 }

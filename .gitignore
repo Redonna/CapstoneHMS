@@ -5,3 +5,5 @@ obj/
 publish/
 HospitalManagementSystem.API/Uploads/
 HospitalManagementSystem.API/MLModels/*.onnx
+MLTraining/data/Diseases_and_Symptoms_dataset.csv
+hospital-api.zip

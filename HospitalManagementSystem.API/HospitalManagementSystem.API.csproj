@@ -27,6 +27,7 @@
   <ItemGroup>
     <Content Include="MLModels\*.onnx" CopyToOutputDirectory="PreserveNewest" />
     <Content Update="MLModels\*.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Uploads\PatientHistory\*.docx" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

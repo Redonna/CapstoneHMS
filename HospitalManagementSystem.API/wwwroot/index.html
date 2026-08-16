@@ -23,20 +23,21 @@
       font-weight: 600;
     }
     .btn-brand:hover { opacity: 0.9; color: #fff; }
-    .btn-outline-brand {
-      border: 2px solid #fff;
-      color: #fff;
-      font-weight: 600;
-    }
-    .btn-outline-brand:hover { background: #fff; color: var(--brand-dark); }
 
     .hero {
-      background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-light) 100%);
-      color: #fff;
-      padding: 100px 0 120px;
+      background: #f7fafc;
+      padding: 90px 0;
+      overflow: hidden;
     }
-    .hero h1 { font-weight: 700; font-size: 2.8rem; }
-    .hero p { font-size: 1.15rem; opacity: 0.92; max-width: 560px; }
+    .hero h1 { font-weight: 700; font-size: 2.9rem; color: var(--brand-dark); line-height: 1.2; }
+    .hero p { font-size: 1.1rem; color: #5a6b7a; max-width: 500px; }
+    .hero img { max-width: 100%; height: auto; }
+    .btn-pill {
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
 
     .section { padding: 70px 0; }
     .section-title { font-weight: 700; color: var(--brand-dark); }
@@ -145,10 +146,11 @@
   <nav class="navbar navbar-expand-md bg-white shadow-sm sticky-top py-3">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="bi bi-hospital"></i>MediCare HMS</a>
-      <div class="d-flex gap-2">
+      <div class="d-flex gap-2 align-items-center">
+        <a href="#" class="btn btn-link text-decoration-none d-none d-md-inline">Home</a>
         <a href="#services" class="btn btn-link text-decoration-none d-none d-md-inline">Services</a>
         <a href="#about" class="btn btn-link text-decoration-none d-none d-md-inline">About</a>
-        <button class="btn btn-brand px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
+        <button class="btn btn-brand btn-pill px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
           <i class="bi bi-box-arrow-in-right me-1"></i>Login
         </button>
       </div>
@@ -157,9 +159,16 @@
 
   <header class="hero">
     <div class="container">
-      <h1>Compassionate care,<br/>backed by modern technology.</h1>
-      <p class="mb-4">MediCare HMS connects patients and doctors on one platform — book appointments, track your health history, and get AI-assisted guidance on your symptoms, all in one place.</p>
-      <button class="btn btn-outline-brand btn-lg px-4" data-bs-toggle="modal" data-bs-target="#loginModal">Get Started</button>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h1 class="mb-3">Compassionate care, backed by modern technology.</h1>
+          <p class="mb-4">MediCare HMS connects patients and doctors on one platform. Book appointments, track your health history, and get AI-assisted guidance on reported symptoms, all in one place.</p>
+          <button class="btn btn-brand btn-pill btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">Get Started</button>
+        </div>
+        <div class="col-lg-6 text-center">
+          <img src="img/hero-doctors.svg" alt="Illustration of doctors" />
+        </div>
+      </div>
     </div>
   </header>
 
@@ -220,8 +229,8 @@
         <div class="col-md-6">
           <h2 class="section-title mb-3">About MediCare HMS</h2>
           <p class="text-muted">MediCare HMS is a hospital management platform built to streamline the day-to-day
-            work of connecting patients and doctors — from booking and confirming appointments, to keeping medical
-            histories organized, to giving doctors a quick, AI-assisted starting point when reviewing symptoms.</p>
+            work of connecting patients and doctors. It handles booking and confirming appointments, keeping medical
+            histories organized, and giving doctors a quick, AI-assisted starting point when reviewing symptoms.</p>
         </div>
         <div class="col-md-6">
           <div class="info-card">
